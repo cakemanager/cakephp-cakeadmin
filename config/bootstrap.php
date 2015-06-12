@@ -16,13 +16,12 @@
 use Cake\Core\Configure;
 
 
-Configure::write('CA.Models', [
-    'administrators' => 'CakeAdmin.Administrators'
+Configure::write('CA.fields', [
+    'username' => 'email',
+    'password' => 'password'
 ]);
 
-Configure::write('CA.PostTypes', [
-
-]);
+Configure::write('CA.PostTypes', []);
 
 Configure::write('CA.RegisterPostType.administrators', 'CakeAdmin.Administrators');
 
