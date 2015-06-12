@@ -61,6 +61,7 @@ class AppController extends Controller
         $this->Auth->sessionKey = 'Auth.CakeAdmin';
         $this->authUser = $this->Auth->user();
 
+        $this->loadComponent('Utils.GlobalAuth');
         $this->loadComponent('Csrf');
         $this->loadComponent('CakeAdmin.EmailListener');
         $this->loadComponent('Utils.Menu');
@@ -77,7 +78,6 @@ class AppController extends Controller
         }
 
         // @ToDo Implement event
-
     }
 
     public function beforeRender(Event $event)
