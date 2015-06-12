@@ -37,10 +37,7 @@ class AppController extends Controller
                 ],
                 'Form' => [
                     'userModel' => 'CakeAdmin.Administrators',
-                    'fields' => [
-                        'username' => 'email',
-                        'password' => 'password'
-                    ],
+                    'fields' => Configure::read('CA.fields'),
                     'scope' => ['Administrators.cakeadmin' => true]
                 ],
             ],
@@ -78,12 +75,17 @@ class AppController extends Controller
         } else {
             $this->layout = 'CakeAdmin.login';
         }
+
+        // @ToDo Implement event
+
     }
 
     public function beforeRender(Event $event)
     {
         $this->set('authUser', $this->authUser);
         $this->set('title', $this->name);
+
+        // @ToDo Implement event
     }
 
     public function isAuthorized($user = null)
@@ -96,7 +98,7 @@ class AppController extends Controller
         $this->Menu->area('headerLeft');
 
         $this->Menu->add('ca.dashboard', [
-            'title' => $this->authUser['email'],
+            'title' => $this->authUser[Configure::read('CA.fields.username')],
             'url' => [
                 'prefix' => false,
                 'plugin' => 'CakeAdmin',
