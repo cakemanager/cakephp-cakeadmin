@@ -269,7 +269,7 @@ class PostTypesComponent extends Component
 
     protected function _registerPostTypesFromConfigure()
     {
-        $configure = Configure::read('CA.RegisterPostType');
+        $configure = Configure::read('CA.Models');
 
         foreach($configure as $name => $model) {
             $this->register($model);
