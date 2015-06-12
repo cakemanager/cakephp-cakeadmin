@@ -1,6 +1,7 @@
 <?php
 namespace CakeAdmin\Model\Table;
 
+use Cake\Core\Configure;
 use CakeAdmin\Model\Entity\Administrator;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
@@ -132,4 +133,51 @@ class AdministratorsTable extends Table
             $entity->set('password', $entity->new_password); // set for password-changes
         }
     }
+
+    /**
+     * generateRequestKey
+     *
+     * This method generates a request key for an user.
+     * It returns a generated string.
+     *
+     * @return string
+     */
+    public function generateRequestKey()
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $requestKey = '';
+        for ($i = 0; $i < 40; $i++) {
+            $requestKey .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $requestKey;
+    }
+
+    /**
+     * validateRequestKey
+     *
+     * Checks if an user is allowed to do an action with a required activation-key
+     *
+     * @param string $email E-mailaddress of the user.
+     * @param string $activationKey Activation key of the user.
+     * @return bool
+     */
+    public function validateRequestKey($email, $requestKey = null)
+    {
+        if (!$requestKey) {
+            return false;
+        }
+
+        $field = Configure::read('CA.fields.username');
+        $query = $this->find('all')->where([
+            $field => $email,
+            'request_key' => $requestKey
+        ]);
+
+        if ($query->Count() > 0) {
+            return true;
+        }
+        return false;
+    }
+
 }

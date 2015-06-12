@@ -21,11 +21,16 @@ class Initial extends AbstractMigration
     {
         if ($this->hasTable('users')) {
             $table = $this->table('users');
-            if (!$table->hasColumn('cakeadmin')) {
+            if (!$table->hasColumn('cakeadmin') && !$table->hasColumn('request_key')) {
                 $table
                     ->addColumn('cakeadmin', 'integer', [
                         'default' => 0,
                         'limit' => 11,
+                        'null' => true,
+                    ])
+                    ->addColumn('request_key', 'string', [
+                        'default' => null,
+                        'limit' => 255,
                         'null' => true,
                     ])
                     ->save();
@@ -46,6 +51,11 @@ class Initial extends AbstractMigration
                 ->addColumn('cakeadmin', 'integer', [
                     'default' => 0,
                     'limit' => 11,
+                    'null' => true,
+                ])
+                ->addColumn('request_key', 'string', [
+                    'default' => null,
+                    'limit' => 255,
                     'null' => true,
                 ])
                 ->addColumn('created', 'datetime', [

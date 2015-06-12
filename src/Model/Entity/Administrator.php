@@ -20,7 +20,7 @@ class Administrator extends Entity
         'password' => true,
         'new_password' => true,
         'confirm_password' => true,
-        'cakeadmin' => true,
+        'activation_key' => true,
     ];
 
     /**
