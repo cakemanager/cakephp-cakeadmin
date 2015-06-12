@@ -61,10 +61,10 @@ class AppController extends Controller
         $this->Auth->sessionKey = 'Auth.CakeAdmin';
         $this->authUser = $this->Auth->user();
 
+        $this->loadComponent('Csrf');
+        $this->loadComponent('CakeAdmin.EmailListener');
         $this->loadComponent('Utils.Menu');
-
         $this->loadComponent('CakeAdmin.PostTypes');
-
         $this->loadComponent('Notifier.Notifier');
     }
 
