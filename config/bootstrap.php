@@ -15,6 +15,7 @@
 
 use Cake\Core\Configure;
 
+Configure::write('Session.timeout', 4320);
 
 Configure::write('CA.fields', [
     'username' => 'email',
@@ -23,6 +24,6 @@ Configure::write('CA.fields', [
 
 Configure::write('CA.PostTypes', []);
 
-Configure::write('CA.RegisterPostType.administrators', 'CakeAdmin.Administrators');
+Configure::write('CA.Models.administrators', 'CakeAdmin.Administrators');
 
 

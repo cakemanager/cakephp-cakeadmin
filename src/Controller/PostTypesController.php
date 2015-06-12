@@ -209,6 +209,6 @@ class PostTypesController extends AppController
         } else {
             $this->Flash->error(__('The {0} could not be deleted. Please, try again.', [$this->type['alias']]));
         }
-        return $this->redirect(['action' => 'index', 'type' => $this->type['table']]);
+        return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
     }
 }
