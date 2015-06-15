@@ -114,7 +114,7 @@ class AdministratorsTable extends Table
 
     public function beforeFind($event, $query, $options, $primary)
     {
-        $query->where(['Administrators.cakeadmin' => 1]);
+        $query->where(['Administrators.cakeadmin' => true]);
     }
 
     /**

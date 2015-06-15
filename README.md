@@ -12,6 +12,18 @@ The recommended way to install composer packages is:
 composer require cakemanager/cakephp-cakeadmin
 ```
 
+Now load the plugin with the command:
+
+``` 
+$ bin/cake plugin load -r -b CakeAdmin
+```
+
+Run the database migrations with:
+
+```
+$ bin/cake migrations migrate --plugin CakeAdmin
+```
+
 ## Strategy
 
 We are working on this version. Wanna read more about our strategy? Read the following post: http://cakemanager.org/new-cakeadmin-plugin-announced/

@@ -54,7 +54,7 @@ class PostTypesController extends AppController
 
         $this->type = $this->PostTypes->getOptions($slug);
 
-        if(!$this->type) {
+        if (!$this->type) {
             throw new Exception("The PostType is not registered");
         }
 
@@ -144,9 +144,9 @@ class PostTypesController extends AppController
      */
     public function add($type = null)
     {
-        $entity = $this->Model->newEntity();
+        $entity = $this->Model->newEntity()->accessible('*', true);
         if ($this->request->is('post')) {
-            $entity = $this->Model->newEntity($this->request->data);
+            $entity = $this->Model->patchEntity($entity, $this->request->data());
             if ($this->Model->save($entity)) {
                 $this->Flash->success(__('The {0} has been saved.', [$this->type['alias']]));
                 return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
@@ -155,7 +155,7 @@ class PostTypesController extends AppController
             }
         }
 
-        foreach($this->Model->associations()->keys() as $association) {
+        foreach ($this->Model->associations()->keys() as $association) {
             $this->set($association, $this->Model->{$association}->find('list')->toArray());
         }
 
@@ -172,10 +172,10 @@ class PostTypesController extends AppController
      */
     public function edit($type = null, $id = null)
     {
-        $entity = $this->Model->get($id);
+        $entity = $this->Model->get($id)->accessible('*', true);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $entity = $this->Model->patchEntity($entity, $this->request->data);
+            $entity = $this->Model->patchEntity($entity, $this->request->data());
             if ($this->Model->save($entity)) {
                 $this->Flash->success(__('The {0} has been edited.', [$this->type['alias']]));
                 return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
@@ -184,7 +184,7 @@ class PostTypesController extends AppController
             }
         }
 
-        foreach($this->Model->associations()->keys() as $association) {
+        foreach ($this->Model->associations()->keys() as $association) {
             $this->set($association, $this->Model->{$association}->find('list')->toArray());
         }
 
