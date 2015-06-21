@@ -129,7 +129,9 @@ class AdministratorsTable extends Table
     {
         $entity->set('cakeadmin', true);
 
-        if (!empty($entity->get('new_password'))) {
+        $newPassword = $entity->get('new_password');
+
+        if (!empty($newPassword)) {
             $entity->set('password', $entity->new_password); // set for password-changes
         }
     }
