@@ -12,8 +12,11 @@
  * @since         1.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 use Cake\Core\Configure;
+use Cake\Core\Plugin;
+
+Plugin::load('Utils', []);
+Plugin::load('Notifier', ['bootstrap' => true, 'routes' => true]);
 
 Configure::write('Session.timeout', 4320);
 
