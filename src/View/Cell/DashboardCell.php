@@ -66,12 +66,12 @@ class DashboardCell extends Cell
     {
         $links = [
             'CakeManager Docs' => [
-                'url' => 'http://cakemanager.org/docs/1.0/',
-                'description' => 'Documentation about the CakeManager Plugin.'
+                'url' => 'http://cakemanager.org/docs/cakeadmin/1.0/',
+                'description' => 'Documentation about the CakeAdmin Plugin.'
             ],
             'Quick Start Tutorial' => [
-                'url' => 'http://cakemanager.org/docs/1.0/tutorials-and-examples/quick-start/',
-                'description' => 'Short tutorial about how to install the CakeManager',
+                'url' => 'http://cakemanager.org/docs/cakeadmin/1.0/tutorials-and-examples/quick-start/',
+                'description' => 'Short tutorial about how to install the CakeAdmin Plugin',
             ]
         ];
 
@@ -91,16 +91,16 @@ class DashboardCell extends Cell
                 'description' => 'Website of the CakeManager Team. Here you can find everything about us and our plugins.'
             ],
             'Gitter' => [
-                'url' => 'https://gitter.im/cakemanager/cakephp-cakemanager',
+                'url' => 'https://gitter.im/cakemanager/cakephp-cakeadmin',
                 'description' => 'Chat Tool for GitHub to talk about issues and new features.',
             ],
             'GitHub' => [
-                'url' => 'https://github.com/cakemanager/cakephp-cakemanager/issues',
+                'url' => 'https://github.com/cakemanager/cakephp-cakeadmin/issues',
                 'description' => 'When there\'s something wrong, please open a new issue!',
             ],
-            'CakeManager Docs' => [
-                'url' => 'http://cakemanager.org/docs/1.0/',
-                'description' => 'Documentation about the CakeManager Plugin.',
+            'CakeAdmin Docs' => [
+                'url' => 'http://cakemanager.org/docs/cakeadmin/1.0/',
+                'description' => 'Documentation about the CakeAdmin Plugin.',
             ],
             'CakePHP Utils Plugin Docs' => [
                 'url' => 'http://cakemanager.org/docs/utils/1.0/',
@@ -122,6 +122,10 @@ class DashboardCell extends Cell
             'Utils' => [
                 'url' => 'https://github.com/cakemanager/cakephp-utils',
                 'description' => 'Utilities for Cake 3.x.'
+            ],
+            'Notifier' => [
+                'url' =>  'https://github.com/cakemanager/cakephp-notifier',
+                'description' => 'Notification plugin for Cake 3.x'
             ],
             'Who Is Online' => [
                 'url' => 'https://github.com/cakemanager/cakephp-whosonline',
