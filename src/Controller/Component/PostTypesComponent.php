@@ -100,7 +100,6 @@ class PostTypesComponent extends Component
      */
     public function beforeFilter($event)
     {
-
     }
 
     /**
@@ -152,11 +151,11 @@ class PostTypesComponent extends Component
         }
         $options = array_merge($options, $modelOptions);
 
-        if($options['formFields']) {
+        if ($options['formFields']) {
             $options['formFields'] = $this->_normalizeFormFields($options['formFields']);
         }
 
-        if($options['tableColumns']) {
+        if ($options['tableColumns']) {
             $options['tableColumns'] = $this->_normalizeTableColumns($options['tableColumns']);
         }
 
@@ -271,7 +270,7 @@ class PostTypesComponent extends Component
     {
         $configure = Configure::read('CA.Models');
 
-        foreach($configure as $name => $model) {
+        foreach ($configure as $name => $model) {
             $this->register($model);
         }
     }
@@ -308,20 +307,20 @@ class PostTypesComponent extends Component
         $counter = 0;
         $max = 2;
 
-        if(in_array('id', $columns)) {
+        if (in_array('id', $columns)) {
             $result['id'] = [];
             unset($columns['id']);
         }
 
-        foreach($columns as $column) {
-            if($counter < $max) {
+        foreach ($columns as $column) {
+            if ($counter < $max) {
                 $result[$column] = [];
                 unset($columns[$column]);
                 $counter++;
             }
         }
 
-        if(in_array('created', $columns)) {
+        if (in_array('created', $columns)) {
             $result['created'] = [];
         }
 
@@ -343,8 +342,8 @@ class PostTypesComponent extends Component
 
         $result = [];
 
-        foreach($columns as $column) {
-            if(!in_array($column, $ignoredFields)) {
+        foreach ($columns as $column) {
+            if (!in_array($column, $ignoredFields)) {
                 $result[$column] = [];
             }
         }
@@ -353,16 +352,23 @@ class PostTypesComponent extends Component
 
     protected function _normalizeFormFields($fields)
     {
-        $_defaults = [
+        $_options = [
             'on' => 'both'
         ];
+
+        $_defaults = [
+            '_create' => $_options
+        ];
+
         $result = [];
 
-        foreach($fields as $name => $options) {
-            if(is_array($options)) {
-                $result[$name] = array_merge($_defaults, $options);
+        $result['_create'] = $_defaults['_create'];
+
+        foreach ($fields as $name => $options) {
+            if (is_array($options)) {
+                $result[$name] = array_merge($_options, $options);
             } else {
-                $result[$options] = $_defaults;
+                $result[$options] = $_options;
             }
         }
         return $result;
@@ -374,8 +380,8 @@ class PostTypesComponent extends Component
         ];
         $result = [];
 
-        foreach($columns as $name => $options) {
-            if(is_array($options)) {
+        foreach ($columns as $name => $options) {
+            if (is_array($options)) {
                 $result[$name] = array_merge($_defaults, $options);
             } else {
                 $result[$options] = $_defaults;
