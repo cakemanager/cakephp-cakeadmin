@@ -20,6 +20,11 @@ Plugin::load('Notifier', ['bootstrap' => true, 'routes' => true]);
 
 Configure::write('Session.timeout', 4320);
 
+Configure::write('CA.theme', 'CakeAdmin');
+
+Configure::write('CA.layout.default', 'CakeAdmin.default');
+Configure::write('CA.layout.login', 'CakeAdmin.login');
+
 Configure::write('CA.fields', [
     'username' => 'email',
     'password' => 'password'

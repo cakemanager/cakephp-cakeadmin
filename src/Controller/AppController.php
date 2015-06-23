@@ -71,10 +71,12 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
+        $this->theme = Configure::read('CA.theme');
+
         if ($this->authUser) {
-            $this->layout = 'CakeAdmin.default';
+            $this->layout = Configure::read('CA.layout.default');
         } else {
-            $this->layout = 'CakeAdmin.login';
+            $this->layout = Configure::read('CA.layout.login');
         }
 
         // @ToDo Implement event
