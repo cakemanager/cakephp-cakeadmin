@@ -24,7 +24,7 @@
     <legend><?= __('Add ' . $type['alias']) ?></legend>
     <?php
     foreach ($type['formFields'] as $field => $options) {
-        if(strpos($field, '_', 0) === false) {
+        if(substr($field, 0,1) !== '_') {
             if(in_array($options['on'], ['both', 'add'])) {
                 echo $this->Form->input($field, $options);
             }
