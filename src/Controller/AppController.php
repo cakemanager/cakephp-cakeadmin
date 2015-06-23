@@ -72,6 +72,7 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         $this->theme = Configure::read('CA.theme');
+        $this->viewClass = Configure::read('CA.viewClass');
 
         if ($this->authUser) {
             $this->layout = Configure::read('CA.layout.default');
