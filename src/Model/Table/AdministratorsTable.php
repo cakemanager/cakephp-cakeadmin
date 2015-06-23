@@ -41,6 +41,11 @@ class AdministratorsTable extends Table
                     'type' => 'password'
                 ]
             ],
+            'tableColumns' => [
+                'id',
+                'email',
+                'created',
+            ],
             'filters' => [
                 'email'
             ]
