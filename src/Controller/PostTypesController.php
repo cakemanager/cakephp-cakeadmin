@@ -103,7 +103,11 @@ class PostTypesController extends AppController
             }
         }
 
-        $query = $this->Search->search($this->Model->find('all'));
+        $baseQueryFunction = $this->type['query'];
+
+        $baseQuery = $baseQueryFunction($this->Model->find('all'));
+
+        $query = $this->Search->search($baseQuery);
 
         $this->set('data', $this->paginate($query));
 

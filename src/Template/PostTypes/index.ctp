@@ -40,7 +40,7 @@ use Cake\Utility\Inflector;
         <tr>
             <?php foreach ($type['tableColumns'] as $column => $options) : ?>
                 <td>
-                    <?= $item->get($column) ?>
+                    <?= Hash::get($item->toArray(), $options['get']) ?>
                 </td>
             <?php endforeach; ?>
             <td class="actions">

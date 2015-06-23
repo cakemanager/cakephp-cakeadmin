@@ -139,6 +139,9 @@ class PostTypesComponent extends Component
             'alias' => ucfirst(Inflector::humanize(pluginSplit($model)[1])),
             'description' => null,
             'filters' => [],
+            'query' => function ($query) {
+                return $query;
+            },
             'tableColumns' => $this->_generateTableColumns($model),
             'formFields' => $this->_generateFormFields($model),
         ];
@@ -377,13 +380,16 @@ class PostTypesComponent extends Component
     protected function _normalizeTableColumns($columns)
     {
         $_defaults = [
+            'get' => false
         ];
         $result = [];
 
         foreach ($columns as $name => $options) {
             if (is_array($options)) {
+                $_defaults['get'] = $name;
                 $result[$name] = array_merge($_defaults, $options);
             } else {
+                $_defaults['get'] = $options;
                 $result[$options] = $_defaults;
             }
         }
