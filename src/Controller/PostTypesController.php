@@ -176,7 +176,13 @@ class PostTypesController extends AppController
      */
     public function edit($type = null, $id = null)
     {
-        $entity = $this->Model->get($id)->accessible('*', true);
+        $baseQueryFunction = $this->type['query'];
+
+        $baseQuery = $baseQueryFunction($this->Model->findById($id));
+
+        $query = $this->Search->search($baseQuery);
+
+        $entity = $query->first()->accessible('*', true);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $entity = $this->Model->patchEntity($entity, $this->request->data());
