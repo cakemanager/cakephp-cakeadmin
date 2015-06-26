@@ -4,25 +4,11 @@
 
 ## Installation
 
-You can install this plugin into your CakePHP application using [composer](http://getcomposer.org).
+You can find the installation-guide here: http://cakemanager.org/docs/cakeadmin/1.0/installation/.
 
-The recommended way to install composer packages is:
+## Documentation
 
-```
-composer require cakemanager/cakephp-cakeadmin
-```
-
-Now load the plugin with the command:
-
-``` 
-$ bin/cake plugin load -r -b CakeAdmin
-```
-
-Run the database migrations with:
-
-```
-$ bin/cake migrations migrate --plugin CakeAdmin
-```
+Documentation is available at http://cakemanager.org/docs/cakeadmin/1.0/.
 
 ## Strategy
 
