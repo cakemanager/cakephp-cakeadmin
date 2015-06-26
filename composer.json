@@ -6,7 +6,8 @@
         "php": ">=5.4.16",
         "cakephp/cakephp": "~3.0",
         "cakemanager/cakephp-utils": "dev-master",
-        "cakemanager/cakephp-notifier": "dev-master"
+        "cakemanager/cakephp-notifier": "dev-master",
+        "cakemanager/cakephp-settings": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "*"

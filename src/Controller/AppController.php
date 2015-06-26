@@ -141,6 +141,17 @@ class AppController extends Controller
                 'action' => 'index',
             ]
         ]);
+
+        $this->Menu->add('ca.settings', [
+            'title' => __('Settings'),
+            'url' => [
+                'prefix' => false,
+                'plugin' => 'CakeAdmin',
+                'controller' => 'Settings',
+                'action' => 'index',
+            ],
+            'weight' => 50
+        ]);
     }
 
 }
