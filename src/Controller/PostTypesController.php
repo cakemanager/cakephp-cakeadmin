@@ -103,14 +103,10 @@ class PostTypesController extends AppController
             }
         }
 
-        $baseQueryFunction = $this->type['query'];
-
-        $baseQuery = $baseQueryFunction($this->Model->find('all'));
-
-        $query = $this->Search->search($baseQuery);
+        $query = $this->_callQuery($this->Model->find('all'));
+        $query = $this->Search->search($query);
 
         $this->set('data', $this->paginate($query));
-
     }
 
     /**
@@ -159,9 +155,7 @@ class PostTypesController extends AppController
             }
         }
 
-        foreach ($this->Model->associations()->keys() as $association) {
-            $this->set($association, $this->Model->{$association}->find('list')->toArray());
-        }
+        $this->_loadAssociations();
 
         $this->set(compact('type', 'entity'));
     }
@@ -176,13 +170,7 @@ class PostTypesController extends AppController
      */
     public function edit($type = null, $id = null)
     {
-        $baseQueryFunction = $this->type['query'];
-
-        $baseQuery = $baseQueryFunction($this->Model->findById($id));
-
-        $query = $this->Search->search($baseQuery);
-
-        $entity = $query->first()->accessible('*', true);
+        $entity = $this->_callQuery($this->Model->get($id));
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $entity = $this->Model->patchEntity($entity, $this->request->data());
@@ -194,9 +182,7 @@ class PostTypesController extends AppController
             }
         }
 
-        foreach ($this->Model->associations()->keys() as $association) {
-            $this->set($association, $this->Model->{$association}->find('list')->toArray());
-        }
+        $this->_loadAssociations();
 
         $this->set(compact('type', 'entity'));
     }
@@ -220,5 +206,19 @@ class PostTypesController extends AppController
             $this->Flash->error(__('The {0} could not be deleted. Please, try again.', [$this->type['alias']]));
         }
         return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
+    }
+
+    protected function _callQuery($query)
+    {
+        $query->contain($this->type['contain']);
+        $extQuery = $this->type['query'];
+        return $extQuery($query);
+    }
+
+    protected function _loadAssociations()
+    {
+        foreach ($this->Model->associations()->keys() as $association) {
+            $this->set($association, $this->Model->{$association}->find('list')->toArray());
+        }
     }
 }

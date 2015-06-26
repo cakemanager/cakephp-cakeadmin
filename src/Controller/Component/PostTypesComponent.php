@@ -139,6 +139,7 @@ class PostTypesComponent extends Component
             'alias' => ucfirst(Inflector::humanize(pluginSplit($model)[1])),
             'description' => null,
             'filters' => [],
+            'contain' => [],
             'query' => function ($query) {
                 return $query;
             },
