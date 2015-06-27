@@ -70,6 +70,7 @@ class SettingsController extends AppController
         if (!$key) {
             $key = 'App';
         }
+        $this->Menu->active($this->prefixes[$key]);
 
         if (!$this->__prefixExists($key)) {
             throw new NotFoundException("The prefix-setting " . $key . " could not be found");
