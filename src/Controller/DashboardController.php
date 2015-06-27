@@ -21,7 +21,8 @@ class DashboardController extends AppController
      */
     public function index()
     {
-
+        $this->Menu->active('ca.dashboard');
+        
 //        debug($this->authUser);
 
 //        debug(Configure::read('CA'));
