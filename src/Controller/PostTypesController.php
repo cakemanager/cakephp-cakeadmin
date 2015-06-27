@@ -170,8 +170,8 @@ class PostTypesController extends AppController
      */
     public function edit($type = null, $id = null)
     {
-        $entity = $this->_callQuery($this->Model->find()->where([$this->type['alias'] . '.id' => $id]));
-	$entity = $entity->first();
+        $query = $this->_callQuery($this->Model->findById($id));
+        $entity = $query->first();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $entity = $this->Model->patchEntity($entity, $this->request->data());
