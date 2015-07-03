@@ -16,10 +16,14 @@ use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Settings\Core\Setting;
 
+# Plugins
 Plugin::load('Utils', []);
 Plugin::load('Settings', ['bootstrap' => true, 'routes' => true]);
 Plugin::load('Notifier', ['bootstrap' => true, 'routes' => true]);
+Plugin::load('LightStrap', ['bootstrap' => true, 'routes' => true]);
 
+
+# Configurations
 Configure::write('Session.timeout', 4320);
 
 Configure::write('CA.theme', 'CakeAdmin');
@@ -41,5 +45,6 @@ Configure::write('CA.PostTypes', []);
 
 Configure::write('CA.Models.administrators', 'CakeAdmin.Administrators');
 
-//Settings
+
+# Settings
 Setting::register('App.Name', 'CakeAdmin Application');
