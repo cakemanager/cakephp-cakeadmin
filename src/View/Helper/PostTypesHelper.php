@@ -264,13 +264,13 @@ class PostTypesHelper extends Helper
                 'action' => 'view',
                 'type' => $this->type()['slug'],
                 $item->get('id')
-            ]);
+            ]). ' ';
 
             $html .= $this->Html->link($options['editLabel'], [
                 'action' => 'edit',
                 'type' => $this->type()['slug'],
                 $item->get('id')
-            ]);
+            ]). ' ';
 
             $html .= $this->Form->postLink($options['deleteLabel'], [
                 'action' => 'delete',
