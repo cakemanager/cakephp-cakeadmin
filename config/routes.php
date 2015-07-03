@@ -14,6 +14,10 @@
  */
 use Cake\Routing\Router;
 
+Router::prefix('admin', function ($routes) {
+    $routes->fallbacks('InflectedRoute');
+});
+
 Router::plugin('CakeAdmin', ['path' => '/admin'], function ($routes) {
 
     $routes->connect(
@@ -22,6 +26,14 @@ Router::plugin('CakeAdmin', ['path' => '/admin'], function ($routes) {
 
     $routes->connect(
         '/', ['controller' => 'Users', 'action' => 'login']
+    );
+
+    $routes->connect(
+        '/dashboard', ['controller' => 'Dashboard']
+    );
+
+    $routes->connect(
+        '/settings/**', ['controller' => 'Settings']
     );
 
     $routes->fallbacks('InflectedRoute');

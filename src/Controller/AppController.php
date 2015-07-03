@@ -42,16 +42,19 @@ class AppController extends Controller
                 ],
             ],
             'loginAction' => [
+                'prefix' => false,
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Users',
                 'action' => 'login'
             ],
             'loginRedirect' => [
+                'prefix' => false,
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Dashboard',
                 'action' => 'index'
             ],
             'logoutRedirect' => [
+                'prefix' => false,
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Users',
                 'action' => 'login'
@@ -139,7 +142,8 @@ class AppController extends Controller
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Dashboard',
                 'action' => 'index',
-            ]
+            ],
+            'weight' => 0,
         ]);
 
         $this->Menu->add('ca.settings', [
@@ -152,6 +156,10 @@ class AppController extends Controller
             ],
             'weight' => 50
         ]);
+
+        foreach(Configure::read('CA.Menu.main') as $key => $value) {
+            $this->Menu->add($key, $value);
+        }
     }
 
 }
