@@ -20,7 +20,6 @@ use Settings\Core\Setting;
 Plugin::load('Utils', []);
 Plugin::load('Settings', ['bootstrap' => true, 'routes' => true]);
 Plugin::load('Notifier', ['bootstrap' => true, 'routes' => true]);
-Plugin::load('LightStrap', ['bootstrap' => true, 'routes' => true]);
 
 
 # Configurations
@@ -48,3 +47,7 @@ Configure::write('CA.Models.administrators', 'CakeAdmin.Administrators');
 
 # Settings
 Setting::register('App.Name', 'CakeAdmin Application');
+
+
+# Theming
+Plugin::load('LightStrap', ['bootstrap' => true, 'routes' => true]);
