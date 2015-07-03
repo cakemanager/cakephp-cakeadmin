@@ -7,7 +7,8 @@
         "cakephp/cakephp": "~3.0",
         "cakemanager/cakephp-utils": "dev-master",
         "cakemanager/cakephp-notifier": "dev-master",
-        "cakemanager/cakephp-settings": "dev-master"
+        "cakemanager/cakephp-settings": "dev-master",
+        "cakemanager/cakeadmin-lightstrap": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
