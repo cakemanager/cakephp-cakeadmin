@@ -24,7 +24,7 @@ $this->PostTypes->type($type);
 <?= $this->PostTypes->createForm($entity) ?>
 <fieldset>
     <?= $this->PostTypes->fieldset([
-        'on' => ['both', 'ad']
+        'on' => ['both', 'add']
     ]) ?>
 </fieldset>
 <?= $this->PostTypes->submitForm() ?>
