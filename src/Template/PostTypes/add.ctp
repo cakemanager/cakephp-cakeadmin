@@ -13,8 +13,6 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$this->loadHelper('CakeAdmin.PostTypes');
-
 $this->PostTypes->type($type);
 ?>
 
