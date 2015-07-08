@@ -221,7 +221,7 @@ class EmailListenerComponent extends Component
      */
     public function implementedEvents()
     {
-        $_events = parent::implementedEvents();
+        return $_events = parent::implementedEvents();
 
         $events = [
             'Controller.Users.afterRegister' => 'afterRegister',

@@ -12,25 +12,22 @@
  * @since         1.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
+$this->loadHelper('CakeAdmin.PostTypes');
+
+$this->PostTypes->type($type);
 ?>
 
-<h3><?= $type['alias'] ?></h3>
+<?= $this->PostTypes->header() ?>
 
-<?= $this->Html->link('All ' . $type['alias'], ['action' => 'index', 'type' => $type['slug']]) ?>
+<?= $this->PostTypes->indexButton() ?>
 
 <hr>
-<?= $this->Form->create($entity, $type['formFields']['_create']); ?>
+<?= $this->PostTypes->createForm($entity) ?>
 <fieldset>
-    <legend><?= __('Add ' . $type['alias']) ?></legend>
-    <?php
-    foreach ($type['formFields'] as $field => $options) {
-        if(substr($field, 0,1) !== '_') {
-            if(in_array($options['on'], ['both', 'add'])) {
-                echo $this->Form->input($field, $options);
-            }
-        }
-    }
-    ?>
+    <?= $this->PostTypes->fieldset([
+        'on' => ['both', 'ad']
+    ]) ?>
 </fieldset>
-<?= $this->Form->button(__('Submit')) ?>
-<?= $this->Form->end() ?>
+<?= $this->PostTypes->submitForm() ?>
+<?= $this->PostTypes->endForm() ?>

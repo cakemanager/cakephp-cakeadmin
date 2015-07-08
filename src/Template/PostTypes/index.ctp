@@ -12,45 +12,26 @@
  * @since         1.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-use Cake\Utility\Hash;
-use Cake\Utility\Inflector;
 
-//debug($type);
+$this->loadHelper('CakeAdmin.PostTypes');
+
+$this->PostTypes->type($type);
+$this->PostTypes->data($data);
 ?>
 
-<h3><?= $type['name'] ?></h3>
+<?= $this->PostTypes->header() ?>
 
-<?= $this->Html->link('New ' . Inflector::singularize($type['alias']), ['action' => 'add', 'type' => $type['slug']]) ?>
+<?= $this->PostTypes->addButton() ?>
 
 <hr>
-<?= ($searchFilters ? $this->Search->filterForm($searchFilters) : null) ?>
+<?= $this->PostTypes->searchFilter($searchFilters) ?>
 
 <table cellpadding="0" cellspacing="0">
     <thead>
-    <tr>
-
-        <?php foreach ($type['tableColumns'] as $column => $options) : ?>
-            <th><?= $this->Paginator->sort($column) ?></th>
-        <?php endforeach; ?>
-        <th class="actions"><?= __('Actions') ?></th>
-    </tr>
+    <?= $this->PostTypes->tableHead() ?>
     </thead>
     <tbody>
-    <?php foreach ($data as $item): ?>
-        <tr>
-            <?php foreach ($type['tableColumns'] as $column => $options) : ?>
-                <td>
-                    <?= Hash::get($item->toArray(), $options['get']) ?>
-                </td>
-            <?php endforeach; ?>
-            <td class="actions">
-                <?= $this->Html->link(__('View'), ['action' => 'view', 'type' => $type['slug'], $item->get('id')]) ?>
-                <?= $this->Html->link(__('Edit'), ['action' => 'edit', 'type' => $type['slug'], $item->get('id')]) ?>
-                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', 'type' => $type['slug'], $item->get('id')], ['confirm' => __('Are you sure you want to delete # {0}?', $item->get('id'))]) ?>
-            </td>
-        </tr>
-
-    <?php endforeach; ?>
+    <?= $this->PostTypes->tableBody() ?>
     </tbody>
 </table>
 <div class="paginator">
@@ -61,7 +42,3 @@ use Cake\Utility\Inflector;
     </ul>
     <p><?= $this->Paginator->counter(); ?></p>
 </div>
-
-<?php
-//debug($data);
-?>
