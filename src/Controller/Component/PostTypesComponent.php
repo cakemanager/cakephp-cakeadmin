@@ -72,8 +72,6 @@ class PostTypesComponent extends Component
 
         $this->_registerPostTypesFromConfigure();
 
-//        $this->_registerPostTypesFromTables();
-
         $this->_addMenuItems();
     }
 
@@ -143,10 +141,17 @@ class PostTypesComponent extends Component
             'query' => function ($query) {
                 return $query;
             },
-            'tableColumns' => $this->_generateTableColumns($model),
-            'formFields' => $this->_generateFormFields($model),
+            'tableColumns' => false,
+            'formFields' => false,
         ];
         $options = array_merge($_defaults, $options);
+
+        if(!$options['tableColumns']) {
+            $options['tableColumns'] = $this->_generateTableColumns($model);
+        }
+        if(!$options['formFields']) {
+            $options['formFields'] = $this->_generateFormFields($model);
+        }
 
         # model is able to disable the PostType to register by returning false
         $modelOptions = $this->_getOptionsFromModel($options['model']);
@@ -276,29 +281,6 @@ class PostTypesComponent extends Component
 
         foreach ($configure as $name => $model) {
             $this->register($model);
-        }
-    }
-
-    /**
-     * _registerPostTypesFromTables
-     *
-     * Registers PostTypes of all tables wich are not presented in a registerd PostType.
-     *
-     * @return void
-     */
-    protected function _registerPostTypesFromTables()
-    {
-        # list of tables
-        $tables = ConnectionManager::get('default')->schemaCollection()->listTables();
-
-        $ignoredTables = (array)Configure::read('CA.IgnoredTables');
-
-        foreach ($tables as $table) {
-            if (!$this->__isTableUsedByPostType($table)) {
-                if (!in_array($table, $ignoredTables)) {
-                    $this->register(Inflector::camelize($table));
-                }
-            }
         }
     }
 

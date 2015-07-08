@@ -33,6 +33,8 @@ Configure::write('CA.fields', [
     'password' => 'password'
 ]);
 
+Configure::write('CA.Menu.main', []);
+
 Configure::write('Settings.Prefixes.CA', 'CakeAdmin');
 
 Configure::write('CA.PostTypes', []);
