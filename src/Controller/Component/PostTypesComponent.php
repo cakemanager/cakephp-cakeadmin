@@ -363,7 +363,9 @@ class PostTypesComponent extends Component
     protected function _normalizeTableColumns($columns)
     {
         $_defaults = [
-            'get' => false
+            'get' => false,
+            'before' => '',
+            'after' => '',
         ];
         $result = [];
 

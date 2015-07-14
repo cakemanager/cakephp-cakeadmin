@@ -254,7 +254,9 @@ class PostTypesHelper extends Helper
 
             foreach ($this->_type['tableColumns'] as $column => $opt):
                 $html .= '<td>';
+                $html .= $opt['before'];
                 $html .= Hash::get($item->toArray(), $opt['get']);
+                $html .= $opt['after'];
                 $html .= '</td>';
             endforeach;
 
