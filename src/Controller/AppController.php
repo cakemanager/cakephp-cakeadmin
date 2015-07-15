@@ -42,19 +42,19 @@ class AppController extends Controller
                 ],
             ],
             'loginAction' => [
-                'prefix' => false,
+                'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Users',
                 'action' => 'login'
             ],
             'loginRedirect' => [
-                'prefix' => false,
+                'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Dashboard',
                 'action' => 'index'
             ],
             'logoutRedirect' => [
-                'prefix' => false,
+                'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Users',
                 'action' => 'login'
@@ -106,7 +106,7 @@ class AppController extends Controller
         $this->Menu->add('ca.dashboard', [
             'title' => $this->authUser[Configure::read('CA.fields.username')],
             'url' => [
-                'prefix' => false,
+                'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Dashboard',
                 'action' => 'index',
@@ -116,7 +116,7 @@ class AppController extends Controller
         $this->Menu->add('notifier.notifications', [
             'title' => 'Notifications (' . $this->Notifier->notificationCount() . ')',
             'url' => [
-                'prefix' => false,
+                'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Notifications',
                 'action' => 'index',
@@ -126,7 +126,7 @@ class AppController extends Controller
         $this->Menu->add('ca.logout', [
             'title' => __('Logout'),
             'url' => [
-                'prefix' => false,
+                'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Users',
                 'action' => 'logout',
@@ -138,7 +138,7 @@ class AppController extends Controller
         $this->Menu->add('ca.dashboard', [
             'title' => __('Dashboard'),
             'url' => [
-                'prefix' => false,
+                'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Dashboard',
                 'action' => 'index',
@@ -149,7 +149,7 @@ class AppController extends Controller
         $this->Menu->add('ca.settings', [
             'title' => __('Settings'),
             'url' => [
-                'prefix' => false,
+                'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Settings',
                 'action' => 'index',

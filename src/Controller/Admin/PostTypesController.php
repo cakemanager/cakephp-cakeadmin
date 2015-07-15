@@ -12,7 +12,7 @@
  * @since         1.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-namespace CakeAdmin\Controller;
+namespace CakeAdmin\Controller\Admin;
 
 use Cake\Core\Configure;
 use Cake\Core\Exception\Exception;

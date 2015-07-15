@@ -18,23 +18,40 @@ Router::prefix('admin', function ($routes) {
     $routes->fallbacks('InflectedRoute');
 });
 
-Router::plugin('CakeAdmin', ['path' => '/admin'], function ($routes) {
+Router::plugin('CakeAdmin', ['path' => '/'], function ($routes) {
 
-    $routes->connect(
-        '/posttypes/:type/:action/*', ['controller' => 'PostTypes'], ['pass' => ['type']]
-    );
+    $routes->prefix('admin', function ($routes) {
 
-    $routes->connect(
-        '/', ['controller' => 'Users', 'action' => 'login']
-    );
+        $routes->connect(
+            '/login', ['controller' => 'Users', 'action' => 'login']
+        );
 
-    $routes->connect(
-        '/dashboard', ['controller' => 'Dashboard']
-    );
+        $routes->connect(
+            '/logout', ['controller' => 'Users', 'action' => 'logout']
+        );
 
-    $routes->connect(
-        '/settings/**', ['controller' => 'Settings']
-    );
+        $routes->connect(
+            '/posttypes/:type/:action/*', ['controller' => 'PostTypes'], ['pass' => ['type']]
+        );
 
-    $routes->fallbacks('InflectedRoute');
+        $routes->connect(
+            '/', ['controller' => 'Users', 'action' => 'login']
+        );
+
+        $routes->connect(
+            '/dashboard', ['controller' => 'Dashboard']
+        );
+
+        $routes->connect(
+            '/notifications/**', ['controller' => 'Notifications']
+        );
+
+        $routes->connect(
+            '/settings/**', ['controller' => 'Settings']
+        );
+
+        $routes->fallbacks('InflectedRoute');
+
+    });
+
 });

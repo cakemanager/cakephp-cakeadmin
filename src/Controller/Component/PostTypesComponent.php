@@ -234,7 +234,7 @@ class PostTypesComponent extends Component
             if ($options['menu']) {
                 $this->Controller->Menu->add($options['alias'], [
                     'url' => [
-                        'prefix' => false,
+                        'prefix' => 'admin',
                         'plugin' => 'CakeAdmin',
                         'controller' => 'PostTypes',
                         'action' => 'index',
