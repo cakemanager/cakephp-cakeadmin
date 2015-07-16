@@ -103,27 +103,34 @@ class AppController extends Controller
     {
         $this->Menu->area('headerLeft');
 
-        $this->Menu->add('ca.dashboard', [
-            'title' => $this->authUser[Configure::read('CA.fields.username')],
-            'url' => [
-                'prefix' => 'admin',
-                'plugin' => 'CakeAdmin',
-                'controller' => 'Dashboard',
-                'action' => 'index',
-            ]
-        ]);
-
         $this->Menu->add('notifier.notifications', [
             'title' => 'Notifications (' . $this->Notifier->notificationCount() . ')',
-            'url' => [
-                'prefix' => 'admin',
-                'plugin' => 'CakeAdmin',
-                'controller' => 'Notifications',
-                'action' => 'index',
-            ]
+            'url' => '#'
+        ]);
+
+        $notifications = $this->Notifier->notificationList();
+
+        foreach ($notifications as $not) {
+            $this->Menu->add('notifier.notifications.' . $not->id, [
+                'parent' => 'notifier.notifications',
+                'title' => $not->title,
+                'url' => '#'
+            ]);
+        }
+
+        $this->Menu->add('notifier.notifications.url', [
+            'parent' => 'notifier.notifications',
+            'title' => '> All Notifications',
+            'url' => '#'
+        ]);
+
+        $this->Menu->add('ca.user', [
+            'title' => $this->authUser[Configure::read('CA.fields.username')],
+            'url' => '#'
         ]);
 
         $this->Menu->add('ca.logout', [
+            'parent' => 'ca.user',
             'title' => __('Logout'),
             'url' => [
                 'prefix' => 'admin',
@@ -157,7 +164,7 @@ class AppController extends Controller
             'weight' => 50
         ]);
 
-        foreach(Configure::read('CA.Menu.main') as $key => $value) {
+        foreach (Configure::read('CA.Menu.main') as $key => $value) {
             $this->Menu->add($key, $value);
         }
     }
