@@ -11,6 +11,7 @@ use Cake\ORM\TableRegistry;
 class CakeAdminComponent extends Component
 {
 
+
     /**
      * Default configuration.
      *
@@ -18,13 +19,22 @@ class CakeAdminComponent extends Component
      */
     protected $_defaultConfig = [];
 
+    protected $_Controller = null;
+
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
+
+        $this->_Controller = $this->_registry->getController();
+    }
+
     public function administrators($field = null)
     {
         $model = TableRegistry::get('CakeAdmin.Administrators');
 
         $query = $model->find('all');
 
-        if($field) {
+        if ($field) {
             $model->displayField($field);
             $query->find('list');
         }
@@ -32,5 +42,22 @@ class CakeAdminComponent extends Component
         $result = $query->toArray();
 
         return $result;
+    }
+
+    public function isLoggedIn()
+    {
+        if ($this->authUser()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function authUser()
+    {
+        $session = $this->_Controller->request->session();
+        if ($session->check('Auth.CakeAdmin')) {
+            return $session->read('Auth.CakeAdmin');
+        }
+        return false;
     }
 }
