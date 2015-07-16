@@ -127,4 +127,32 @@ class MainMenuHelper extends Helper implements MenuBuilderInterface
     {
         return '';
     }
+
+    /**
+     * beforeItem
+     *
+     * Method before an item has been build.
+     *
+     * @param array $item The menu item.
+     * @param array $options Options.
+     * @return string
+     */
+    public function beforeItem($item = [], $options = [])
+    {
+        // TODO: Implement beforeItem() method.
+    }
+
+    /**
+     * afterItem
+     *
+     * Method after an item has been build.
+     *
+     * @param array $item The menu item.
+     * @param array $options Options.
+     * @return string
+     */
+    public function afterItem($item = [], $options = [])
+    {
+        // TODO: Implement afterItem() method.
+    }
 }
