@@ -114,14 +114,24 @@ class AppController extends Controller
             $this->Menu->add('notifier.notifications.' . $not->id, [
                 'parent' => 'notifier.notifications',
                 'title' => $not->title,
-                'url' => '#'
+                'url' => [
+                    'prefix' => 'admin',
+                    'plugin' => 'CakeAdmin',
+                    'controller' => 'Notifications',
+                    'action' => 'index'
+                ]
             ]);
         }
 
         $this->Menu->add('notifier.notifications.url', [
             'parent' => 'notifier.notifications',
             'title' => '> All Notifications',
-            'url' => '#'
+            'url' => [
+                'prefix' => 'admin',
+                'plugin' => 'CakeAdmin',
+                'controller' => 'Notifications',
+                'action' => 'index'
+            ]
         ]);
 
         $this->Menu->add('ca.user', [
