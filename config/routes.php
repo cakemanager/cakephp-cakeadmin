@@ -15,6 +15,15 @@
 use Cake\Routing\Router;
 
 Router::prefix('admin', function ($routes) {
+
+    $routes->connect(
+        '/', [
+            'plugin' => 'CakeAdmin',
+            'controller' => 'Users',
+            'action' => 'login'
+        ]
+    );
+
     $routes->fallbacks('InflectedRoute');
 });
 
