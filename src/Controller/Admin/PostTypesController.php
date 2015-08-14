@@ -91,7 +91,7 @@ class PostTypesController extends AppController
     {
         $this->_validateActionIsEnabled('index');
 
-        $this->event('beforeIndex');
+        $this->_event('beforeIndex');
 
         $this->paginate = [
             'limit' => 25,
@@ -113,7 +113,7 @@ class PostTypesController extends AppController
 
         $this->set('data', $this->paginate($query));
 
-        $this->event('afterIndex');
+        $this->_event('afterIndex');
     }
 
     /**
@@ -127,7 +127,7 @@ class PostTypesController extends AppController
     {
         $this->_validateActionIsEnabled('view');
 
-        $this->event('beforeView', [
+        $this->_event('beforeView', [
             'id' => $id
         ]);
 
@@ -136,7 +136,7 @@ class PostTypesController extends AppController
         ]);
         $this->set('data', $data);
 
-        $this->event('afterView', [
+        $this->_event('afterView', [
             'id' => $id
         ]);
     }
@@ -151,7 +151,7 @@ class PostTypesController extends AppController
     {
         $this->_validateActionIsEnabled('add');
 
-        $this->event('beforeAdd');
+        $this->_event('beforeAdd');
 
         $entity = $this->Model->newEntity()->accessible('*', true);
         if ($this->request->is('post')) {
@@ -168,7 +168,7 @@ class PostTypesController extends AppController
 
         $this->set(compact('type', 'entity'));
 
-        $this->event('afterAdd');
+        $this->_event('afterAdd');
     }
 
     /**
@@ -183,7 +183,7 @@ class PostTypesController extends AppController
     {
         $this->_validateActionIsEnabled('edit');
 
-        $this->event('beforeEdit', [
+        $this->_event('beforeEdit', [
             'id' => $id
         ]);
 
@@ -205,7 +205,7 @@ class PostTypesController extends AppController
 
         $this->set(compact('type', 'entity'));
 
-        $this->event('afterEdit', [
+        $this->_event('afterEdit', [
             'id' => $id
         ]);
     }
@@ -221,7 +221,7 @@ class PostTypesController extends AppController
     {
         $this->_validateActionIsEnabled('delete');
 
-        $this->event('beforeDelete', [
+        $this->_event('beforeDelete', [
             'id' => $id
         ]);
 
@@ -235,7 +235,7 @@ class PostTypesController extends AppController
             $this->Flash->error(__('The {0} could not be deleted. Please, try again.', [$this->type['singluarAliasLc']]));
         }
 
-        $this->event('afterDelete', [
+        $this->_event('afterDelete', [
             'id' => $id
         ]);
 
@@ -273,7 +273,7 @@ class PostTypesController extends AppController
         return true;
     }
 
-    protected function event($action, $data = [])
+    protected function _event($action, $data = [])
     {
         $_event = new Event('Controller.PostTypes.' . $this->type['name'] . '.' . $action, $this, $data);
         $this->eventManager()->dispatch($_event);
