@@ -89,6 +89,8 @@ class PostTypesController extends AppController
      */
     public function index($type = null)
     {
+        $this->_validateActionIsEnabled('index');
+        
         $this->paginate = [
             'limit' => 25,
             'order' => [
@@ -119,6 +121,8 @@ class PostTypesController extends AppController
      */
     public function view($_type = null, $id = null)
     {
+        $this->_validateActionIsEnabled('view');
+
         // setting up an event for the view
         $_event = new Event('Controller.PostTypes.beforeView.' . $this->_type, $this, [
             'id' => $id,
@@ -145,6 +149,8 @@ class PostTypesController extends AppController
      */
     public function add($type = null)
     {
+        $this->_validateActionIsEnabled('add');
+
         $entity = $this->Model->newEntity()->accessible('*', true);
         if ($this->request->is('post')) {
             $entity = $this->Model->patchEntity($entity, $this->request->data());
@@ -171,6 +177,8 @@ class PostTypesController extends AppController
      */
     public function edit($type = null, $id = null)
     {
+        $this->_validateActionIsEnabled('edit');
+
         $query = $this->_callQuery($this->Model->findById($id));
         $entity = $query->first();
 
@@ -199,6 +207,8 @@ class PostTypesController extends AppController
      */
     public function delete($type = null, $id = null)
     {
+        $this->_validateActionIsEnabled('delete');
+
         $entity = $this->Model->get($id);
 
         $this->request->allowMethod(['post', 'delete']);
@@ -223,5 +233,22 @@ class PostTypesController extends AppController
         foreach ($this->Model->associations()->keys() as $association) {
             $this->set($association, $this->Model->{$association}->find('list')->toArray());
         }
+    }
+
+    public function _validateActionIsEnabled($action)
+    {
+        if(!$this->_actionIsEnabled($action)) {
+            throw new Exception('This action is disabled for the PostType ' . $this->type['alias']);
+        }
+    }
+    
+    protected function _actionIsEnabled($action)
+    {
+        $actions = $this->type['actions'];
+
+        if (array_key_exists($action, $actions)) {
+            return $actions[$action];
+        }
+        return true;
     }
 }

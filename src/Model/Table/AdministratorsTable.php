@@ -48,6 +48,10 @@ class AdministratorsTable extends Table
             ],
             'filters' => [
                 'email'
+            ],
+            'actions' => [
+                'edit' => false,
+                'delete' => false,
             ]
         ];
     }

@@ -224,8 +224,8 @@ class EmailListenerComponent extends Component
         return $_events = parent::implementedEvents();
 
         $events = [
-            'Controller.Users.afterRegister' => 'afterRegister',
-            'Controller.Users.afterForgotPassword' => 'afterForgotPassword',
+            'Controller.Admin.Users.afterRegister' => 'afterRegister',
+            'Controller.Admin.Users.afterForgotPassword' => 'afterForgotPassword',
         ];
 
         return array_merge($_events, $events);
