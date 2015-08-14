@@ -18,6 +18,7 @@ use Cake\Core\Configure;
 use Cake\Core\Exception\Exception;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
+use Cake\Utility\Inflector;
 use CakeAdmin\Controller\AppController;
 
 /**
@@ -148,10 +149,10 @@ class PostTypesController extends AppController
         if ($this->request->is('post')) {
             $entity = $this->Model->patchEntity($entity, $this->request->data());
             if ($this->Model->save($entity)) {
-                $this->Flash->success(__('The {0} has been saved.', [$this->type['alias']]));
+                $this->Flash->success(__('The {0} has been saved.', [$this->type['singluarAliasLc']]));
                 return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
             } else {
-                $this->Flash->error(__('The {0} could not be saved. Please, try again.', [$this->type['alias']]));
+                $this->Flash->error(__('The {0} could not be saved. Please, try again.', [$this->type['singluarAliasLc']]));
             }
         }
 
@@ -177,10 +178,10 @@ class PostTypesController extends AppController
             $entity->accessible('*', true);
             $entity = $this->Model->patchEntity($entity, $this->request->data());
             if ($this->Model->save($entity)) {
-                $this->Flash->success(__('The {0} has been edited.', [$this->type['alias']]));
+                $this->Flash->success(__('The {0} has been edited.', [$this->type['singluarAliasLc']]));
                 return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
             } else {
-                $this->Flash->error(__('The {0} could not be edited. Please, try again.', [$this->type['alias']]));
+                $this->Flash->error(__('The {0} could not be edited. Please, try again.', [$this->type['singluarAliasLc']]));
             }
         }
 
@@ -203,9 +204,9 @@ class PostTypesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
 
         if ($this->Model->delete($entity)) {
-            $this->Flash->success(__('The {0} has been deleted.', [$this->type['alias']]));
+            $this->Flash->success(__('The {0} has been deleted.', [$this->type['singluarAliasLc']]));
         } else {
-            $this->Flash->error(__('The {0} could not be deleted. Please, try again.', [$this->type['alias']]));
+            $this->Flash->error(__('The {0} could not be deleted. Please, try again.', [$this->type['singluarAliasLc']]));
         }
         return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
     }
