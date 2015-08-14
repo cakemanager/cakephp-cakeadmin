@@ -90,7 +90,9 @@ class PostTypesController extends AppController
     public function index($type = null)
     {
         $this->_validateActionIsEnabled('index');
-        
+
+        $this->event('beforeIndex');
+
         $this->paginate = [
             'limit' => 25,
             'order' => [
@@ -110,6 +112,8 @@ class PostTypesController extends AppController
         $query = $this->Search->search($query);
 
         $this->set('data', $this->paginate($query));
+
+        $this->event('afterIndex');
     }
 
     /**
@@ -119,26 +123,22 @@ class PostTypesController extends AppController
      * @param string|null $id Post Type id
      * @return void
      */
-    public function view($_type = null, $id = null)
+    public function view($type = null, $id = null)
     {
         $this->_validateActionIsEnabled('view');
 
-        // setting up an event for the view
-        $_event = new Event('Controller.PostTypes.beforeView.' . $this->_type, $this, [
-            'id' => $id,
+        $this->event('beforeView', [
+            'id' => $id
         ]);
-        $this->eventManager()->dispatch($_event);
 
-        $type = $this->Model->get($id, [
-            'contain' => $this->Settings['contain']
+        $data = $this->Model->get($id, [
+            'contain' => $this->type['contain']
         ]);
-        $this->set('type', $type);
+        $this->set('data', $data);
 
-        // setting up an event for the view
-        $_event = new Event('Controller.PostTypes.afterView.' . $this->_type, $this, [
-            'id' => $id,
+        $this->event('afterView', [
+            'id' => $id
         ]);
-        $this->eventManager()->dispatch($_event);
     }
 
     /**
@@ -150,6 +150,8 @@ class PostTypesController extends AppController
     public function add($type = null)
     {
         $this->_validateActionIsEnabled('add');
+
+        $this->event('beforeAdd');
 
         $entity = $this->Model->newEntity()->accessible('*', true);
         if ($this->request->is('post')) {
@@ -165,6 +167,8 @@ class PostTypesController extends AppController
         $this->_loadAssociations();
 
         $this->set(compact('type', 'entity'));
+
+        $this->event('afterAdd');
     }
 
     /**
@@ -178,6 +182,10 @@ class PostTypesController extends AppController
     public function edit($type = null, $id = null)
     {
         $this->_validateActionIsEnabled('edit');
+
+        $this->event('beforeEdit', [
+            'id' => $id
+        ]);
 
         $query = $this->_callQuery($this->Model->findById($id));
         $entity = $query->first();
@@ -196,6 +204,10 @@ class PostTypesController extends AppController
         $this->_loadAssociations();
 
         $this->set(compact('type', 'entity'));
+
+        $this->event('afterEdit', [
+            'id' => $id
+        ]);
     }
 
     /**
@@ -209,6 +221,10 @@ class PostTypesController extends AppController
     {
         $this->_validateActionIsEnabled('delete');
 
+        $this->event('beforeDelete', [
+            'id' => $id
+        ]);
+
         $entity = $this->Model->get($id);
 
         $this->request->allowMethod(['post', 'delete']);
@@ -218,6 +234,11 @@ class PostTypesController extends AppController
         } else {
             $this->Flash->error(__('The {0} could not be deleted. Please, try again.', [$this->type['singluarAliasLc']]));
         }
+
+        $this->event('afterDelete', [
+            'id' => $id
+        ]);
+
         return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
     }
 
@@ -237,11 +258,11 @@ class PostTypesController extends AppController
 
     public function _validateActionIsEnabled($action)
     {
-        if(!$this->_actionIsEnabled($action)) {
+        if (!$this->_actionIsEnabled($action)) {
             throw new Exception('This action is disabled for the PostType ' . $this->type['alias']);
         }
     }
-    
+
     protected function _actionIsEnabled($action)
     {
         $actions = $this->type['actions'];
@@ -250,5 +271,11 @@ class PostTypesController extends AppController
             return $actions[$action];
         }
         return true;
+    }
+
+    protected function event($action, $data = [])
+    {
+        $_event = new Event('Controller.PostTypes.' . $this->type['name'] . '.' . $action, $this, $data);
+        $this->eventManager()->dispatch($_event);
     }
 }
