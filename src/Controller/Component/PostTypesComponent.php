@@ -139,6 +139,13 @@ class PostTypesComponent extends Component
             'singluarAlias' =>  ucfirst(Inflector::singularize(Inflector::humanize(pluginSplit($model)[1]))),
             'singluarAliasLc' =>  lcfirst(Inflector::singularize(Inflector::humanize(pluginSplit($model)[1]))),
             'description' => null,
+            'actions' => [
+                'index' => true,
+                'add' => true,
+                'edit' => true,
+                'view' => true,
+                'delete' => true,
+            ],
             'filters' => [],
             'contain' => [],
             'query' => function ($query) {
