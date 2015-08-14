@@ -174,7 +174,8 @@ class PostTypesController extends AppController
         $entity = $query->first();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $entity = $this->Model->patchEntity($entity, $this->request->data())->accessible('*', true);
+            $entity->accessible('*', true);
+            $entity = $this->Model->patchEntity($entity, $this->request->data());
             if ($this->Model->save($entity)) {
                 $this->Flash->success(__('The {0} has been edited.', [$this->type['alias']]));
                 return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
