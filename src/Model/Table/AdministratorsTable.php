@@ -2,6 +2,8 @@
 namespace CakeAdmin\Model\Table;
 
 use Cake\Core\Configure;
+use Cake\Event\EventManager;
+use CakeAdmin\Controller\PostTypes\Events\AdministratorEvents;
 use CakeAdmin\Model\Entity\Administrator;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
@@ -26,10 +28,16 @@ class AdministratorsTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
+
+        $this->addBehavior('Utils.IsOwnedBy', [
+            'column' => 'id'
+        ]);
     }
 
     public function postType()
     {
+        EventManager::instance()->on(new AdministratorEvents());
+
         return [
             'formFields' => [
                 'email',
@@ -49,10 +57,6 @@ class AdministratorsTable extends Table
             'filters' => [
                 'email'
             ],
-            'actions' => [
-                'edit' => false,
-                'delete' => false,
-            ]
         ];
     }
 
