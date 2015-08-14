@@ -15,6 +15,8 @@
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Settings\Core\Setting;
+use Cake\Event\EventManager;
+use CakeAdmin\Event\CakeAdminMailer;
 
 # Plugins
 Plugin::load('Utils', []);
@@ -36,6 +38,10 @@ Configure::write('CA.fields', [
     'password' => 'password'
 ]);
 
+Configure::write('CA.email.from', ['admin@cakemanager.org' => 'Bob | CakeManager']);
+
+Configure::write('CA.email.transport', 'default');
+
 Configure::write('CA.Menu.main', []);
 
 Configure::write('Settings.Prefixes.CA', 'CakeAdmin');
@@ -51,3 +57,11 @@ Setting::register('App.Name', 'CakeAdmin Application');
 
 # Theming
 Plugin::load('LightStrap', ['bootstrap' => true, 'routes' => true]);
+
+
+# Notifier RecipientList
+Configure::write('Notifier.recipientLists.administrators', \Cake\ORM\TableRegistry::get('CakeAdmin.Administrators')->find('list')->toArray());
+
+
+# Events
+EventManager::instance()->on(new CakeAdminMailer());

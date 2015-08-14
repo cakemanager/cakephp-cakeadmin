@@ -14,6 +14,8 @@
  */
 namespace CakeAdmin\Controller\Admin;
 
+use Cake\Event\Event;
+use Cake\Event\EventManager;
 use CakeAdmin\Controller\AppController;
 use Cake\Auth\DefaultPasswordHasher;
 
@@ -83,7 +85,12 @@ class UsersController extends AppController
             if ($user->Count()) {
                 $user = $user->first();
                 $user->set('request_key', $this->Administrators->generateRequestKey());
-                $this->Users->save($user);
+                if($this->Users->save($user)) {
+                    $event = new Event('Controller.Admin.Users.afterForgotPassword', $this, [
+                        'user' => $user
+                    ]);
+                    EventManager::instance()->dispatch($event);
+                }
             }
 
             $this->Flash->success(__('Check your e-mail to change your password.'));

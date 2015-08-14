@@ -66,7 +66,6 @@ class AppController extends Controller
 
         $this->loadComponent('Utils.GlobalAuth');
         $this->loadComponent('Csrf');
-        $this->loadComponent('CakeAdmin.EmailListener');
         $this->loadComponent('Utils.Menu');
         $this->loadComponent('CakeAdmin.PostTypes');
         $this->loadComponent('Notifier.Notifier');

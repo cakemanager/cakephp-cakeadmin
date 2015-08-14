@@ -48,6 +48,10 @@ Router::plugin('CakeAdmin', ['path' => '/'], function ($routes) {
         );
 
         $routes->connect(
+            '/users/:action/*', ['controller' => 'Users']
+        );
+
+        $routes->connect(
             '/dashboard', ['controller' => 'Dashboard']
         );
 
