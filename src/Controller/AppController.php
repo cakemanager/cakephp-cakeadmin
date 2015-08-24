@@ -82,6 +82,8 @@ class AppController extends Controller
             $this->layout = Configure::read('CA.layout.login');
         }
 
+        $this->_addNotificationMenu();
+
         // @ToDo Implement event
     }
 
@@ -101,37 +103,6 @@ class AppController extends Controller
     public function initMenuItems()
     {
         $this->Menu->area('headerLeft');
-
-        $this->Menu->add('notifier.notifications', [
-            'title' => 'Notifications (' . $this->Notifier->notificationCount() . ')',
-            'url' => '#'
-        ]);
-
-        $notifications = $this->Notifier->notificationList();
-
-        foreach ($notifications as $not) {
-            $this->Menu->add('notifier.notifications.' . $not->id, [
-                'parent' => 'notifier.notifications',
-                'title' => $not->title,
-                'url' => [
-                    'prefix' => 'admin',
-                    'plugin' => 'CakeAdmin',
-                    'controller' => 'Notifications',
-                    'action' => 'index'
-                ]
-            ]);
-        }
-
-        $this->Menu->add('notifier.notifications.url', [
-            'parent' => 'notifier.notifications',
-            'title' => '> All Notifications',
-            'url' => [
-                'prefix' => 'admin',
-                'plugin' => 'CakeAdmin',
-                'controller' => 'Notifications',
-                'action' => 'index'
-            ]
-        ]);
 
         $this->Menu->add('ca.user', [
             'title' => $this->authUser[Configure::read('CA.fields.username')],
@@ -176,6 +147,43 @@ class AppController extends Controller
         foreach (Configure::read('CA.Menu.main') as $key => $value) {
             $this->Menu->add($key, $value);
         }
+    }
+
+    protected function _addNotificationMenu()
+    {
+        $this->Menu->area('headerLeft');
+
+        $this->Menu->add('notifier.notifications', [
+            'title' => 'Notifications (' . $this->Notifier->notificationCount() . ')',
+            'url' => '#',
+            'weight' => 5
+        ]);
+
+        $notifications = $this->Notifier->notificationList();
+
+        foreach ($notifications as $not) {
+            $this->Menu->add('notifier.notifications.' . $not->id, [
+                'parent' => 'notifier.notifications',
+                'title' => $not->title,
+                'url' => [
+                    'prefix' => 'admin',
+                    'plugin' => 'CakeAdmin',
+                    'controller' => 'Notifications',
+                    'action' => 'index'
+                ]
+            ]);
+        }
+
+        $this->Menu->add('notifier.notifications.url', [
+            'parent' => 'notifier.notifications',
+            'title' => '> All Notifications',
+            'url' => [
+                'prefix' => 'admin',
+                'plugin' => 'CakeAdmin',
+                'controller' => 'Notifications',
+                'action' => 'index'
+            ]
+        ]);
     }
 
 }

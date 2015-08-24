@@ -24,10 +24,17 @@ use CakeAdmin\Controller\AppController;
 class NotificationsController extends AppController
 {
 
+    public function beforeFilter(\Cake\Event\Event $event)
+    {
+        // notifications for index-action have to be loaded here because of the loaded count of unread notifications.
+        $this->set('notifications', $this->Notifier->allNotificationList());
+        $this->Notifier->markAsRead();
+
+        parent::beforeFilter($event);
+    }
+
     public function index()
     {
-        $this->set('notifications', $this->Notifier->allNotificationList());
-
-        $this->Notifier->markAsRead();
+        // notifications are loaded in beforeFilter();
     }
 }
