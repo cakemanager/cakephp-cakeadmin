@@ -43,7 +43,6 @@ class AdministratorsTable extends Table
                 'email',
                 'new_password' => [
                     'type' => 'password',
-                    'help' => 'help!'
                 ],
                 'confirm_password' => [
                     'type' => 'password'
