@@ -9,29 +9,28 @@ use Cake\Console\Shell;
 class AdminShell extends Shell
 {
 
-    public $tasks = ['CakeAdmin.NewAdmin'];
-
     /**
      * main() method.
      *
      * @return bool|int Success or error code.
      */
     public function main() {
-    }
+        $email = $this->in('E-mailaddress:');
 
-    /**
-     * getOptionParser method.
-     *
-     * @return \Cake\Console\ConsoleOptionParser
-     */
-    public function getOptionParser()
-    {
-        $parser = parent::getOptionParser();
+        $password = $this->in('Password: [WILL BE VISIBLE]');
 
-        $parser->addSubcommand('newAdmin', [
-            'help' => 'Create a new administrator.'
+        $this->loadModel('CakeAdmin.Administrators');
+
+        $entity = $this->Administrators->newEntity([
+            'email' => $email,
+            'password' => $password
         ]);
 
-        return $parser;
+        if($this->Administrators->save($entity)) {
+            $this->out('<info>Administrator has been saved</info>');
+        } else {
+            $this->out('<warning>Administrator could not be saved</warning>');
+        }
     }
+
 }
