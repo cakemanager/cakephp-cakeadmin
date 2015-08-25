@@ -60,7 +60,7 @@ Plugin::load('LightStrap', ['bootstrap' => true, 'routes' => true]);
 
 
 # Notifier RecipientList
-Configure::write('Notifier.recipientLists.administrators', \Cake\ORM\TableRegistry::get('CakeAdmin.Administrators')->find('list')->toArray());
+//Configure::write('Notifier.recipientLists.administrators', \Cake\ORM\TableRegistry::get('CakeAdmin.Administrators')->find('list')->toArray());
 
 
 # Events
