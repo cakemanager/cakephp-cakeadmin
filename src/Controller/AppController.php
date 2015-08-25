@@ -17,6 +17,7 @@ namespace CakeAdmin\Controller;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Event\EventManager;
 
 class AppController extends Controller
 {
@@ -69,6 +70,9 @@ class AppController extends Controller
         $this->loadComponent('Utils.Menu');
         $this->loadComponent('CakeAdmin.PostTypes');
         $this->loadComponent('Notifier.Notifier');
+
+        $event = new Event('CakeAdmin.Controller.afterInitialize', $this);
+        EventManager::instance()->dispatch($event);
     }
 
     public function beforeFilter(Event $event)
@@ -84,7 +88,8 @@ class AppController extends Controller
 
         $this->_addNotificationMenu();
 
-        // @ToDo Implement event
+        $event = new Event('CakeAdmin.Controller.beforeFilter', $this);
+        EventManager::instance()->dispatch($event);
     }
 
     public function beforeRender(Event $event)
@@ -92,7 +97,8 @@ class AppController extends Controller
         $this->set('authUser', $this->authUser);
         $this->set('title', $this->name);
 
-        // @ToDo Implement event
+        $event = new Event('CakeAdmin.Controller.beforeRender', $this);
+        EventManager::instance()->dispatch($event);
     }
 
     public function isAuthorized($user = null)
