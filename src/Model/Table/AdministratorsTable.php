@@ -36,8 +36,6 @@ class AdministratorsTable extends Table
 
     public function postType()
     {
-        EventManager::instance()->on(new AdministratorEvents());
-
         return [
             'formFields' => [
                 'email',
