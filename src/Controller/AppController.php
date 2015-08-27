@@ -160,12 +160,12 @@ class AppController extends Controller
         $this->Menu->area('headerLeft');
 
         $this->Menu->add('notifier.notifications', [
-            'title' => 'Notifications (' . $this->Notifier->notificationCount() . ')',
+            'title' => 'Notifications (' . $this->Notifier->countNotifications(null, true) . ')',
             'url' => '#',
             'weight' => 5
         ]);
 
-        $notifications = $this->Notifier->notificationList();
+        $notifications = $this->Notifier->getNotifications(null, true);
 
         foreach ($notifications as $not) {
             $this->Menu->add('notifier.notifications.' . $not->id, [
