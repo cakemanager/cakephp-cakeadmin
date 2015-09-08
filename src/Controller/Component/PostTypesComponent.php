@@ -51,15 +51,6 @@ class PostTypesComponent extends Component
     ];
 
     /**
-     * Components
-     *
-     * @var array
-     */
-    public $components = [
-        'CakeAdmin.ModelManager'
-    ];
-
-    /**
      * Controller
      *
      * @var Controller
@@ -136,8 +127,8 @@ class PostTypesComponent extends Component
             'name' => ucfirst(Inflector::slug(pluginSplit($model)[1])),
             'alias' => ucfirst(Inflector::humanize(pluginSplit($model)[1])),
             'aliasLc' => lcfirst(Inflector::humanize(pluginSplit($model)[1])),
-            'singluarAlias' =>  ucfirst(Inflector::singularize(Inflector::humanize(pluginSplit($model)[1]))),
-            'singluarAliasLc' =>  lcfirst(Inflector::singularize(Inflector::humanize(pluginSplit($model)[1]))),
+            'singluarAlias' => ucfirst(Inflector::singularize(Inflector::humanize(pluginSplit($model)[1]))),
+            'singluarAliasLc' => lcfirst(Inflector::singularize(Inflector::humanize(pluginSplit($model)[1]))),
             'description' => null,
             'actions' => [
                 'index' => true,
@@ -156,10 +147,10 @@ class PostTypesComponent extends Component
         ];
         $options = array_merge($_defaults, $options);
 
-        if(!$options['tableColumns']) {
+        if (!$options['tableColumns']) {
             $options['tableColumns'] = $this->_generateTableColumns($model);
         }
-        if(!$options['formFields']) {
+        if (!$options['formFields']) {
             $options['formFields'] = $this->_generateFormFields($model);
         }
 
@@ -184,18 +175,24 @@ class PostTypesComponent extends Component
     }
 
     /**
-     * getOptions
+     * getOption
      *
-     * Returns all options of a specific PostType.
+     * Return single option, or all options per PostType.
      *
      * @param string $name Name of the PostType.
+     * @param string $option String of the named option.
      * @return array|bool
      */
-    public function getOptions($name)
+    public function getOption($name, $option = null)
     {
         $postTypes = Configure::read('CA.PostTypes');
 
         if (array_key_exists($name, $postTypes)) {
+            if ($option) {
+                if (array_key_exists($option, $postTypes[$name])) {
+                    return $postTypes[$name][$option];
+                }
+            }
             return $postTypes[$name];
         }
         return false;

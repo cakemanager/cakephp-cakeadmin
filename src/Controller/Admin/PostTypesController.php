@@ -53,7 +53,7 @@ class PostTypesController extends AppController
     {
         $slug = lcfirst($this->request->params['type']);
 
-        $this->type = $this->PostTypes->getOptions($slug);
+        $this->type = $this->PostTypes->getOption($slug);
 
         if (!$this->type) {
             throw new Exception("The PostType is not registered");

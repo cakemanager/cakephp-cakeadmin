@@ -49,8 +49,9 @@ class CakeAdminComponent extends Component
 
     public function isLoggedIn()
     {
-        if ($this->authUser()) {
-            return true;
+        $session = $this->_Controller->request->session();
+        if ($session->check('Auth.CakeAdmin')) {
+            return (bool)$session->read('Auth.CakeAdmin');
         }
         return false;
     }
