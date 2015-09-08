@@ -27,7 +27,7 @@ class NotificationsController extends AppController
     public function beforeFilter(\Cake\Event\Event $event)
     {
         // notifications for index-action have to be loaded here because of the loaded count of unread notifications.
-        $this->set('notifications', $this->Notifier->allNotificationList());
+        $this->set('notifications', $this->Notifier->getNotifications());
         $this->Notifier->markAsRead();
 
         parent::beforeFilter($event);
