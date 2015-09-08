@@ -17,6 +17,7 @@ use Cake\Core\Plugin;
 use Settings\Core\Setting;
 use Cake\Event\EventManager;
 use CakeAdmin\Event\CakeAdminMailer;
+use Notifier\Utility\NotificationManager;
 
 # Plugins
 Plugin::load('Utils', []);
@@ -59,9 +60,12 @@ Setting::register('App.Name', 'CakeAdmin Application');
 Plugin::load('LightStrap', ['bootstrap' => true, 'routes' => true]);
 
 
-# Notifier RecipientList
-//Configure::write('Notifier.recipientLists.administrators', \Cake\ORM\TableRegistry::get('CakeAdmin.Administrators')->find('list')->toArray());
-
-
 # Events
 EventManager::instance()->on(new CakeAdminMailer());
+
+
+# Notification Templates
+NotificationManager::instance()->addTemplate('newAdministrator', [
+    'title' => 'New administrator has been registered',
+    'body' => ':email has been registered as administrator at :created'
+]);

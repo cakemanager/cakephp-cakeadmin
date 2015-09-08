@@ -4,6 +4,7 @@ namespace CakeAdmin\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
 use Cake\ORM\TableRegistry;
+use Notifier\Utility\NotificationManager;
 
 /**
  * CakeAdmin component
@@ -26,6 +27,8 @@ class CakeAdminComponent extends Component
         parent::initialize($config);
 
         $this->_Controller = $this->_registry->getController();
+
+        $this->_setRecipientList();
     }
 
     public function administrators($field = null)
@@ -59,5 +62,11 @@ class CakeAdminComponent extends Component
             return $session->read('Auth.CakeAdmin');
         }
         return false;
+    }
+
+    protected function _setRecipientList()
+    {
+        $list = TableRegistry::get('CakeAdmin.Administrators')->find('list')->toArray();
+        NotificationManager::instance()->addRecipientList('administrators', $list);
     }
 }
