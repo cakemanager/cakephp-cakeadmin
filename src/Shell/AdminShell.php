@@ -14,7 +14,8 @@ class AdminShell extends Shell
      *
      * @return bool|int Success or error code.
      */
-    public function main() {
+    public function main()
+    {
         $email = $this->in('E-mailaddress:');
 
         $password = $this->in('Password: [WILL BE VISIBLE]');
@@ -26,10 +27,17 @@ class AdminShell extends Shell
             'password' => $password
         ]);
 
-        if($this->Administrators->save($entity)) {
+        if ($this->Administrators->save($entity)) {
             $this->out('<info>Administrator has been saved</info>');
         } else {
-            $this->out('<warning>Administrator could not be saved</warning>');
+            $this->out('<error>Administrator could not be saved. Run $ bin/cake admin to create an admin.</error>');
+            $this->hr();
+            foreach ($entity->errors() as $field => $errors) {
+                foreach ($errors as $error) {
+                    $this->out('<warning>For field `' . $field . '`: ' . $error . ' </warning>');
+                }
+            }
+            $this->hr();
         }
     }
 

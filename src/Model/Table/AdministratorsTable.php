@@ -9,6 +9,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Notifier\Utility\NotificationManager;
 
 /**
  * Administrators Model
@@ -71,10 +72,10 @@ class AdministratorsTable extends Table
 
         $validator
             ->add('email', 'valid', ['rule' => 'email'])
-            ->allowEmpty('email');
+            ->notEmpty('email');
 
         $validator
-            ->allowEmpty('password');
+            ->notEmpty('password');
 
         $validator
             ->allowEmpty('new_password');
@@ -143,6 +144,28 @@ class AdministratorsTable extends Table
 
         if (!empty($newPassword)) {
             $entity->set('password', $entity->new_password); // set for password-changes
+        }
+    }
+
+    /**
+     * afterSave event
+     *
+     * @param \Cake\Event\Event $event Event.
+     * @param \Cake\ORM\Entity $entity Entity.
+     * @param array $options Options.
+     * @return void
+     */
+    public function afterSave($event, $entity, $options)
+    {
+        if($entity->isNew()) {
+            NotificationManager::instance()->notify([
+                'recipientLists' => ['administrators'],
+                'template' => 'newAdministrator',
+                'vars' => [
+                    'email' => $entity->get('email'),
+                    'created' => $entity->get('created'),
+                ]
+            ]);
         }
     }
 
