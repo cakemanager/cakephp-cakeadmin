@@ -14,7 +14,7 @@
  */
 use Phinx\Migration\AbstractMigration;
 
-class Initial extends AbstractMigration
+class CakeadminInitial extends AbstractMigration
 {
 
     public function up()
