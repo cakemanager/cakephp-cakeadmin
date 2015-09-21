@@ -3,7 +3,6 @@ namespace CakeAdmin\Model\Table;
 
 use Cake\Core\Configure;
 use Cake\Event\EventManager;
-use CakeAdmin\Controller\PostTypes\Events\AdministratorEvents;
 use CakeAdmin\Model\Entity\Administrator;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;

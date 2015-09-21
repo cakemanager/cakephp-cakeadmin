@@ -16,6 +16,7 @@ namespace CakeAdmin\Controller\Admin;
 
 use Cake\Event\Event;
 use Cake\Event\EventManager;
+use Cake\Mailer\MailerAwareTrait;
 use CakeAdmin\Controller\AppController;
 use Cake\Auth\DefaultPasswordHasher;
 
@@ -26,6 +27,15 @@ use Cake\Auth\DefaultPasswordHasher;
 class UsersController extends AppController
 {
 
+    use MailerAwareTrait;
+
+    /**
+     * initialize
+     *
+     * Initializes the Controller.
+     *
+     * @return void;
+     */
     public function initialize()
     {
         parent::initialize();
@@ -38,11 +48,19 @@ class UsersController extends AppController
         $this->loadModel('CakeAdmin.Administrators');
     }
 
+    /**
+     * Login action
+     *
+     * Login action for administrators. Here you are able to login into your admin-panel.
+     *
+     * @return \Cake\Network\Response|void
+     */
     public function login()
     {
         if($this->authUser) {
             return $this->redirect($this->Auth->redirectUrl());
         }
+
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
@@ -51,9 +69,18 @@ class UsersController extends AppController
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error(__('Invalid username or password, try again'));
+        } else {
+            $this->request->data['email'] = $this->request->query('email');
         }
     }
 
+    /**
+     * Logout action
+     *
+     * Via this action you will be logged out and redirected to the login-page.
+     *
+     * @return \Cake\Network\Response|void
+     */
     public function logout()
     {
         $this->Flash->success(__('You are now logged out.'));
@@ -80,9 +107,11 @@ class UsersController extends AppController
             return $this->redirect('/login');
         }
 
+        $this->Flash->success(__('Check your e-mail to change your password.'));
+
         if ($this->request->is('post')) {
-            $user = $this->Administrators->findByEmail($this->request->data['email']);
-            if ($user->Count()) {
+            $user = $this->Administrators->findByEmail($this->request->data('email'));
+            if ($user->count()) {
                 $user = $user->first();
                 $user->set('request_key', $this->Administrators->generateRequestKey());
                 if($this->Users->save($user)) {
@@ -90,10 +119,13 @@ class UsersController extends AppController
                         'user' => $user
                     ]);
                     EventManager::instance()->dispatch($event);
+
+                    $this->getMailer('CakeAdmin.CakeAdmin')->send('reset_password', [$user]);
+
+                    return $this->redirect($this->Auth->config('loginAction') + ['email' => $user->email]);
                 }
             }
 
-            $this->Flash->success(__('Check your e-mail to change your password.'));
             return $this->redirect($this->Auth->config('loginAction'));
         }
     }
@@ -112,14 +144,14 @@ class UsersController extends AppController
     {
         // Redirect if user is already logged in
         if ($this->authUser) {
-            $this->Flash->error(__('Your account could not be activated.'));
-            return $this->redirect($this->Auth->config('loginAction'));
+            $this->Flash->error(__('Your account could not be reset.'));
+            return $this->redirect($this->Auth->config('loginAction') + ['email' => $email]);
         }
 
         // If the email and key doesn't match
         if (!$this->Administrators->validateRequestKey($email, $requestKey)) {
-            $this->Flash->error(__('Your account could not be activated.'));
-            return $this->redirect($this->Auth->config('loginAction'));
+            $this->Flash->error(__('Your account could not be reset.'));
+            return $this->redirect($this->Auth->config('loginAction') + ['email' => $email]);
         }
 
         // If we passed and the POST isset
@@ -136,7 +168,7 @@ class UsersController extends AppController
 
                 if ($this->Administrators->save($user)) {
                     $this->Flash->success(__('Your password has been changed.'));
-                    return $this->redirect($this->Auth->config('loginAction'));
+                    return $this->redirect($this->Auth->config('loginAction') + ['email' => $email]);
                 }
             }
             $this->Flash->error(__('Your account could not be activated.'));
