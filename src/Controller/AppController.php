@@ -59,7 +59,7 @@ class AppController extends Controller
                 'plugin' => 'CakeAdmin',
                 'controller' => 'Users',
                 'action' => 'login'
-            ],
+            ]
         ]);
 
         $this->Auth->sessionKey = 'Auth.CakeAdmin';
@@ -77,13 +77,13 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-        $this->theme = Configure::read('CA.theme');
+        $this->viewBuilder()->theme(Configure::read('CA.theme'));
         $this->viewClass = Configure::read('CA.viewClass');
 
         if ($this->authUser) {
-            $this->layout = Configure::read('CA.layout.default');
+            $this->viewBuilder()->layout(Configure::read('CA.layout.default'));
         } else {
-            $this->layout = Configure::read('CA.layout.login');
+            $this->viewBuilder()->layout(Configure::read('CA.layout.login'));
         }
 
         $this->_addNotificationMenu();

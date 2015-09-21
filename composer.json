@@ -4,11 +4,13 @@
   "type": "cakephp-plugin",
   "require": {
     "php": ">=5.4.16",
-    "cakephp/cakephp": "~3.0",
+    "cakephp/cakephp": "3.1.*",
     "cakemanager/cakephp-utils": "dev-master",
     "cakemanager/cakephp-notifier": "dev-master",
     "cakemanager/cakephp-settings": "dev-master",
-    "cakemanager/cakeadmin-lightstrap": "dev-master"
+    "cakemanager/cakeadmin-lightstrap": "dev-master",
+    "cakephp/debug_kit": "3.2.*",
+    "cakephp/bake": "1.1.*"
   },
   "require-dev": {
     "phpunit/phpunit": "*"
