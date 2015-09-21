@@ -14,6 +14,8 @@
  */
 namespace CakeAdmin\View\Cell;
 
+use Cake\Core\Configure;
+use Cake\Network\Http\Client;
 use Cake\Utility\Xml;
 use Cake\View\Cell;
 
@@ -47,14 +49,13 @@ class DashboardCell extends Cell
      */
     public function latestPosts()
     {
-        $rss = file_get_contents('http://cakemanager.org/rss', false);
+        $http = new Client(['host' => Configure::read('CA.Api')]);
 
-        if ($rss) {
-            $xml = Xml::toArray(Xml::build($rss));
-            $data = $xml['rss']['channel']['item'];
-        }
+        $response = $http->get('dashboards/posts.json')->json;
 
-        $this->set('posts', (isset($data) ? $data : []));
+        $data = $response['data'];
+
+        $this->set('data', (isset($data) ? $data : []));
     }
 
     /**
@@ -85,30 +86,13 @@ class DashboardCell extends Cell
      */
     public function gettingHelp()
     {
-        $links = [
-            'CakeManager Website' => [
-                'url' => 'http://cakemanager.org/',
-                'description' => 'Website of the CakeManager Team. Here you can find everything about us and our plugins.'
-            ],
-            'Gitter' => [
-                'url' => 'https://gitter.im/cakemanager/cakephp-cakeadmin',
-                'description' => 'Chat Tool for GitHub to talk about issues and new features.',
-            ],
-            'GitHub' => [
-                'url' => 'https://github.com/cakemanager/cakephp-cakeadmin/issues',
-                'description' => 'When there\'s something wrong, please open a new issue!',
-            ],
-            'CakeAdmin Docs' => [
-                'url' => 'http://cakemanager.org/docs/cakeadmin/1.0/',
-                'description' => 'Documentation about the CakeAdmin Plugin.',
-            ],
-            'CakePHP Utils Plugin Docs' => [
-                'url' => 'http://cakemanager.org/docs/utils/1.0/',
-                'description' => 'Documentation about the Utils Plugin.',
-            ],
-        ];
+        $http = new Client(['host' => Configure::read('CA.Api')]);
 
-        $this->set('list', $links);
+        $response = $http->get('dashboards/resources.json')->json;
+
+        $data = $response['data'];
+
+        $this->set('data', $data);
     }
 
     /**
@@ -118,30 +102,13 @@ class DashboardCell extends Cell
      */
     public function plugins()
     {
-        $links = [
-            'Utils' => [
-                'url' => 'https://github.com/cakemanager/cakephp-utils',
-                'description' => 'Utilities for Cake 3.x.'
-            ],
-            'Notifier' => [
-                'url' =>  'https://github.com/cakemanager/cakephp-notifier',
-                'description' => 'Notification plugin for Cake 3.x'
-            ],
-            'Who Is Online' => [
-                'url' => 'https://github.com/cakemanager/cakephp-whosonline',
-                'description' => 'Plugin to follow your users on your app.'
-            ],
-            'PostTypes' => [
-                'url' => 'https://github.com/cakemanager/cakephp-posttypes',
-                'description' => 'Plugin to create dynamic CRUD for your admin-panel.'
-            ],
-            'Settings' => [
-                'url' => 'https://github.com/cakemanager/cakephp-settings',
-                'description' => 'Plugin to save settings in your database and manage them.'
-            ],
-        ];
+        $http = new Client(['host' => Configure::read('CA.Api')]);
 
-        $this->set('list', $links);
+        $response = $http->get('dashboards/plugins.json')->json;
+
+        $data = $response['data'];
+
+        $this->set('data', $data);
     }
 
     /**
@@ -151,6 +118,6 @@ class DashboardCell extends Cell
      */
     public function aboutUs()
     {
-        
+
     }
 }

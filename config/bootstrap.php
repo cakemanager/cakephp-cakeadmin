@@ -28,6 +28,9 @@ Plugin::load('Notifier', ['bootstrap' => true, 'routes' => true]);
 # Configurations
 Configure::write('Session.timeout', 4320);
 
+Configure::write('CA.Api', 'cakemanager.dev/api');
+Configure::write('CA.Domain', 'http://cakemanager.dev');
+
 Configure::write('CA.theme', 'CakeAdmin');
 Configure::write('CA.viewClass', null);
 

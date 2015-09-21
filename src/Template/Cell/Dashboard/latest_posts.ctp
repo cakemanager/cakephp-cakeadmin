@@ -9,7 +9,7 @@ use Cake\I18n\Time;
             <a href="<?= $post['link'] ?>" target="_blank"><?= $post['title'] ?></a>
             <ul>
                 <?php $time = new Time($post['pubDate']); ?>
-                <li><?= "Author: " . $post['dc:creator'] . " | " . $time->timeAgoInWords() ?></li>
+                <li><?= "Author: " . $post['createdBy']['name'] . " | " . $time->timeAgoInWords() ?></li>
             </ul>
         </li>
 
