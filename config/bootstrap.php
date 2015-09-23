@@ -68,7 +68,7 @@ NotificationManager::instance()->addTemplate('newAdministrator', [
 
 
 # Notification recipientLists
-NotificationManager::instance()->addRecipientList(
-    'administrators',
-    TableRegistry::get('CakeAdmin.Administrators')->find('list')->toArray()
-);
+//NotificationManager::instance()->addRecipientList(
+//    'administrators',
+//    TableRegistry::get('CakeAdmin.Administrators')->find('list')->toArray()
+//);
