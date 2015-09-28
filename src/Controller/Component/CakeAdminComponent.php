@@ -27,8 +27,30 @@ class CakeAdminComponent extends Component
         parent::initialize($config);
 
         $this->_Controller = $this->_registry->getController();
+
+        $this->_setRecipientList();
+
     }
 
+    /**
+     * Returns a list of administrators.
+     *
+     * ### Example:
+     *
+     *  $component->administrators('email');
+     *
+     * Will return: [
+     *     1 => 'admin@domain.com'
+     *     ...
+     * ]
+     *
+     *  $component->administrators();
+     *
+     * Will return
+     *
+     * @param null $field
+     * @return array
+     */
     public function administrators($field = null)
     {
         $model = TableRegistry::get('CakeAdmin.Administrators');
@@ -62,4 +84,14 @@ class CakeAdminComponent extends Component
         }
         return false;
     }
+
+    protected function _setRecipientList()
+    {
+        NotificationManager::instance()->addRecipientList(
+            'administrators',
+            TableRegistry::get('CakeAdmin.Administrators')->find('list')->toArray()
+        );
+    }
+
+
 }

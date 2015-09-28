@@ -42,6 +42,43 @@ class PostTypesComponentTest extends TestCase
      */
     public function testInitialization()
     {
+        $component =
+
         $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    public function testSetController()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    public function testRegisterAllOptions()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    public function testRegisterFormFields()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    public function testRegisterTableColumns()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    public function testGetOptions()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    public function testGetFormFields()
+    {
+        
+    }
+
+    public function testGetTableColumns()
+    {
+
     }
 }

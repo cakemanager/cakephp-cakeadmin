@@ -65,10 +65,3 @@ NotificationManager::instance()->addTemplate('newAdministrator', [
     'title' => 'New administrator has been registered',
     'body' => ':email has been registered as administrator at :created'
 ]);
-
-
-# Notification recipientLists
-//NotificationManager::instance()->addRecipientList(
-//    'administrators',
-//    TableRegistry::get('CakeAdmin.Administrators')->find('list')->toArray()
-//);
