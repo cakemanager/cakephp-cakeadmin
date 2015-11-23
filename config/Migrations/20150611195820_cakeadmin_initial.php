@@ -62,16 +62,8 @@ class CakeadminInitial extends AbstractMigration
                     'limit' => 255,
                     'null' => true,
                 ])
-                ->addColumn('created', 'datetime', [
-                    'default' => null,
-                    'limit' => null,
-                    'null' => true,
-                ])
-                ->addColumn('modified', 'datetime', [
-                    'default' => null,
-                    'limit' => null,
-                    'null' => true,
-                ])
+                ->addColumn('created', 'datetime')
+                ->addColumn('modified', 'datetime')
                 ->create();
         }
     }
