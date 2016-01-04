@@ -251,8 +251,8 @@ class PostTypesController extends AppController
 
     protected function _loadAssociations()
     {
-        foreach ($this->Model->associations()->keys() as $association) {
-            $this->set($association, $this->Model->{$association}->find('list')->toArray());
+        foreach ($this->Model->associations()->getIterator() as $association => $assocData) {
+            $this->set(Inflector::variable($assocData->alias()), $this->Model->{$association}->find('list')->toArray());
         }
     }
 
