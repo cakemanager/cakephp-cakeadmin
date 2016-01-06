@@ -119,8 +119,8 @@ class PostTypesComponentTest extends TestCase
             'name' => 'Authors',
             'alias' => 'Authors',
             'aliasLc' => 'authors',
-            'singluarAlias' => 'Author',
-            'singluarAliasLc' => 'author',
+            'singularAlias' => 'Author',
+            'singularAliasLc' => 'author',
             'description' => null,
             'actions' => [
                 'index' => true,
@@ -221,8 +221,8 @@ class PostTypesComponentTest extends TestCase
             'name' => 'Cake Authors',
             'alias' => 'CakeAuthors',
             'aliasLc' => 'cakeauthors',
-            'singluarAlias' => 'Author',
-            'singluarAliasLc' => 'author',
+            'singularAlias' => 'Author',
+            'singularAliasLc' => 'author',
             'description' => 'Authors are owners of books.',
             'actions' => [
                 'index' => false,
@@ -294,8 +294,8 @@ class PostTypesComponentTest extends TestCase
             'name' => 'Cake Books',
             'alias' => 'CakeBooks',
             'aliasLc' => 'cakebooks',
-            'singluarAlias' => 'Book',
-            'singluarAliasLc' => 'book',
+            'singularAlias' => 'Book',
+            'singularAliasLc' => 'book',
             'description' => 'Books are written by authors.',
             'actions' => [
                 'index' => false,
@@ -430,8 +430,8 @@ class PostTypesComponentTest extends TestCase
             'name' => 'Cake Books',
             'alias' => 'CakeBooks',
             'aliasLc' => 'cakebooks',
-            'singluarAlias' => 'Book',
-            'singluarAliasLc' => 'book',
+            'singularAlias' => 'Book',
+            'singularAliasLc' => 'book',
             'description' => 'Books are written by authors.',
             'actions' => [
                 'index' => false,
