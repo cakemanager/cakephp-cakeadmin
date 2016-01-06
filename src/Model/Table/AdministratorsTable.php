@@ -1,9 +1,21 @@
 <?php
+/**
+ * CakeManager (http://cakemanager.org)
+ * Copyright (c) http://cakemanager.org
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) http://cakemanager.org
+ * @link          http://cakemanager.org CakeManager Project
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
 namespace CakeAdmin\Model\Table;
 
+use CakeAdmin\Model\Entity\Administrator;
 use Cake\Core\Configure;
 use Cake\Event\EventManager;
-use CakeAdmin\Model\Entity\Administrator;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -34,6 +46,11 @@ class AdministratorsTable extends Table
         ]);
     }
 
+    /**
+     * Configures the PostType for CakeAdmin.
+     *
+     * @return array
+     */
     public function postType()
     {
         return [
@@ -94,7 +111,7 @@ class AdministratorsTable extends Table
                     }
                     return true;
                 },
-                'message' => __('Passwords are not equal.'),]);
+                'message' => __('Passwords are not equal.')]);
 
         $validator
             ->add('confirm_password', 'custom', ['rule' => function ($value, $context) {
@@ -106,7 +123,7 @@ class AdministratorsTable extends Table
                 }
                 return true;
             },
-                'message' => __('Passwords are not equal.'),]);
+                'message' => __('Passwords are not equal.')]);
 
         return $validator;
     }
@@ -118,16 +135,22 @@ class AdministratorsTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public
-    function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
         return $rules;
     }
 
-
-    public
-    function beforeFind($event, $query, $options, $primary)
+    /**
+     * beforeFind event.
+     *
+     * @param \Cake\Event\Event $event Event.
+     * @param \Cake\ORM\Query $query Query.
+     * @param array $options Options.
+     * @param bool $primary Primary.
+     * @return void
+     */
+    public function beforeFind($event, $query, $options, $primary)
     {
         $query->where(['Administrators.cakeadmin' => true]);
     }
@@ -140,8 +163,7 @@ class AdministratorsTable extends Table
      * @param array $options Options.
      * @return void
      */
-    public
-    function beforeSave($event, $entity, $options)
+    public function beforeSave($event, $entity, $options)
     {
         $entity->set('cakeadmin', true);
 
@@ -160,8 +182,7 @@ class AdministratorsTable extends Table
      * @param array $options Options.
      * @return void
      */
-    public
-    function afterSave($event, $entity, $options)
+    public function afterSave($event, $entity, $options)
     {
         if ($entity->isNew()) {
             NotificationManager::instance()->notify([
@@ -183,8 +204,7 @@ class AdministratorsTable extends Table
      *
      * @return string
      */
-    public
-    function generateRequestKey()
+    public function generateRequestKey()
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -201,11 +221,10 @@ class AdministratorsTable extends Table
      * Checks if an user is allowed to do an action with a required activation-key
      *
      * @param string $email E-mailaddress of the user.
-     * @param string $activationKey Activation key of the user.
+     * @param string $requestKey Activation key of the user.
      * @return bool
      */
-    public
-    function validateRequestKey($email, $requestKey = null)
+    public function validateRequestKey($email, $requestKey = null)
     {
         if (!$requestKey) {
             return false;
@@ -222,5 +241,4 @@ class AdministratorsTable extends Table
         }
         return false;
     }
-
 }

@@ -1,11 +1,22 @@
 <?php
+/**
+ * CakeManager (http://cakemanager.org)
+ * Copyright (c) http://cakemanager.org
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) http://cakemanager.org
+ * @link          http://cakemanager.org CakeManager Project
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
 namespace CakeAdmin\Test\TestCase\Controller\Admin;
 
 use Cake\Event\EventManager;
 use Cake\Network\Request;
 use Cake\Network\Response;
 use Cake\ORM\TableRegistry;
-use CakeAdmin\Controller\Admin\UsersController;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
@@ -230,7 +241,7 @@ class UsersControllerTest extends IntegrationTestCase
 
                 $mailer->expects($this->once())
                     ->method('send')
-                    ->with($this->equalTo('reset_password'))
+                    ->with($this->equalTo('resetPassword'))
                     ->will($this->returnValue(true));
 
                 $this->_controller = $this->getMock(
@@ -339,7 +350,6 @@ class UsersControllerTest extends IntegrationTestCase
 
         $this->assertResponseSuccess();
         $this->assertRedirect('/admin?email=bob%40cakeplugins.org');
-
     }
 
     /**
@@ -362,5 +372,4 @@ class UsersControllerTest extends IntegrationTestCase
 
         $this->assertSession('Your account could not be reset.', 'Flash.flash.0.message');
     }
-
 }

@@ -13,9 +13,9 @@
  */
 namespace CakeAdmin\Test\TestCase\Controller\Component;
 
-use Cake\ORM\TableRegistry;
 use CakeAdmin\Controller\Component\CakeAdminComponent;
 use Cake\Controller\ComponentRegistry;
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**

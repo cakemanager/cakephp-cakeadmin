@@ -30,8 +30,18 @@ class CakeAdminComponent extends Component
      */
     protected $_defaultConfig = [];
 
+    /**
+     * Controller that is used.
+     * @var Controller
+     */
     protected $Controller = null;
 
+    /**
+     * Initialize component.
+     *
+     * @param array $config Configurations.
+     * @return void
+     */
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -118,5 +128,4 @@ class CakeAdminComponent extends Component
             TableRegistry::get('CakeAdmin.Administrators')->find('list')->toArray()
         );
     }
-
 }

@@ -64,5 +64,4 @@ class DashboardControllerTest extends IntegrationTestCase
 
         $this->assertResponseContains('<li class="active"><a href="/admin/dashboard">Dashboard</a></li>');
     }
-
 }

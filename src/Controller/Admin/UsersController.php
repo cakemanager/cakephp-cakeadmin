@@ -14,11 +14,11 @@
  */
 namespace CakeAdmin\Controller\Admin;
 
+use CakeAdmin\Controller\AppController;
+use Cake\Auth\DefaultPasswordHasher;
 use Cake\Event\Event;
 use Cake\Event\EventManager;
 use Cake\Mailer\MailerAwareTrait;
-use CakeAdmin\Controller\AppController;
-use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Users Controller
@@ -30,11 +30,9 @@ class UsersController extends AppController
     use MailerAwareTrait;
 
     /**
-     * initialize
+     * Initializes UsersController.
      *
-     * Initializes the Controller.
-     *
-     * @return void;
+     * @return void
      */
     public function initialize()
     {
@@ -93,7 +91,7 @@ class UsersController extends AppController
      *
      * Via this action you are able to request a new password.
      * After the post it will send a mail with a link.
-     * This link will redirect to the action 'reset_password'.
+     * This link will redirect to the action 'reset'.
      *
      * This action always gives a success-message.
      * That's because else hackers (or other bad-guys) will be able
@@ -121,7 +119,7 @@ class UsersController extends AppController
                     ]);
                     EventManager::instance()->dispatch($event);
 
-                    $this->getMailer('CakeAdmin.CakeAdmin')->send('reset_password', [$user]);
+                    $this->getMailer('CakeAdmin.CakeAdmin')->send('resetPassword', [$user]);
 
                     return $this->redirect($this->Auth->config('loginAction') + ['email' => $user->email]);
                 }

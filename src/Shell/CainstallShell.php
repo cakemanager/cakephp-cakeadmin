@@ -1,4 +1,16 @@
 <?php
+/**
+ * CakeManager (http://cakemanager.org)
+ * Copyright (c) http://cakemanager.org
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) http://cakemanager.org
+ * @link          http://cakemanager.org CakeManager Project
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
 namespace CakeAdmin\Shell;
 
 use Cake\Console\Shell;
@@ -14,7 +26,7 @@ class CainstallShell extends Shell
     /**
      * main() method.
      *
-     * @return bool|int Success or error code.
+     * @return void
      */
     public function main()
     {
@@ -44,18 +56,26 @@ class CainstallShell extends Shell
         }
     }
 
-    protected
-    function migrate($plugin)
+    /**
+     * Migrates the given plugin.
+     *
+     * @param string $plugin Plugin name.
+     * @return bool
+     */
+    protected function migrate($plugin)
     {
         $migrations = new Migrations();
 
         return $migrations->migrate(['plugin' => $plugin]);
-
-        unset($migrations);
     }
 
-    protected
-    function _tableExists($table)
+    /**
+     * Checks if the table exists.
+     *
+     * @param string $table Plugin name.
+     * @return bool
+     */
+    protected function _tableExists($table)
     {
         $db = ConnectionManager::get('default');
         $tables = $db->schemaCollection()->listTables();

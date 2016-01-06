@@ -14,22 +14,22 @@
  */
 namespace CakeAdmin\Mailer;
 
-use Cake\Mailer\Mailer;
 use Cake\Core\Configure;
+use Cake\Mailer\Mailer;
 use Settings\Core\Setting;
 
 class CakeAdminMailer extends Mailer
 {
 
     /**
-     * reset_password
+     * resetPassword
      *
      * Sends mail if an user requested a new password.
      *
-     * @param $user User entity.
+     * @param \CakeAdmin\Model\Entity\Administrator $user User entity.
      * @return void
      */
-    public function reset_password($user)
+    public function resetPassword($user)
     {
         $from = Configure::read('CA.email.from');
         $fullBaseUrl = Setting::read('App.BaseUrl');
@@ -44,12 +44,11 @@ class CakeAdminMailer extends Mailer
             'from' => reset($from),
         ]);
 
-        $this->template('CakeAdmin.reset_password', 'CakeAdmin.default');
+        $this->template('CakeAdmin.resetPassword', 'CakeAdmin.default');
         $this->emailFormat('both');
         $this->from($from);
         $this->to($user['email']);
         $this->subject(__('Forgot Password'));
         $this->transport(Configure::read('CA.email.transport'));
     }
-
 }

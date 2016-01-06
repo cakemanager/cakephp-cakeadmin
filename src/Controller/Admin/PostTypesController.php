@@ -14,12 +14,12 @@
  */
 namespace CakeAdmin\Controller\Admin;
 
+use CakeAdmin\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Core\Exception\Exception;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Inflector;
-use CakeAdmin\Controller\AppController;
 
 /**
  * PostTypes Controller
@@ -49,6 +49,12 @@ class PostTypesController extends AppController
         $this->helpers['Utils.Search'] = [];
     }
 
+    /**
+     * beforeFilter event.
+     *
+     * @param \Cake\Event\Event $event Event.
+     * @return void
+     */
     public function beforeFilter(Event $event)
     {
         $slug = lcfirst($this->request->params['type']);
@@ -68,7 +74,7 @@ class PostTypesController extends AppController
     }
 
     /**
-     * beforeRender event
+     * beforeRender event.
      *
      * @param \Cake\Event\Event $event Event.
      * @return void
@@ -119,7 +125,7 @@ class PostTypesController extends AppController
     /**
      * View method
      *
-     * @param string $_type The requested PostType.
+     * @param string $type The requested PostType.
      * @param string|null $id Post Type id
      * @return void
      */
@@ -242,6 +248,12 @@ class PostTypesController extends AppController
         return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
     }
 
+    /**
+     * Uses the query-callable from the PostType.
+     *
+     * @param Query $query Query object.
+     * @return Query Query object.
+     */
     protected function _callQuery($query)
     {
         $query->contain($this->type['contain']);
@@ -249,6 +261,11 @@ class PostTypesController extends AppController
         return $extQuery($query);
     }
 
+    /**
+     * Dynamically loads all associations of the model.
+     *
+     * @return void
+     */
     protected function _loadAssociations()
     {
         foreach ($this->Model->associations()->getIterator() as $association => $assocData) {
@@ -256,13 +273,25 @@ class PostTypesController extends AppController
         }
     }
 
-    public function _validateActionIsEnabled($action)
+    /**
+     * Validates if the action is enabled. If not an exception will be raised.
+     *
+     * @param string $action Chosen action to check on.
+     * @return void
+     */
+    protected function _validateActionIsEnabled($action)
     {
         if (!$this->_actionIsEnabled($action)) {
             throw new Exception('This action is disabled for the PostType ' . $this->type['alias']);
         }
     }
 
+    /**
+     * Checks if the action is enabled.
+     *
+     * @param string $action Chosen action to check on.
+     * @return bool
+     */
     protected function _actionIsEnabled($action)
     {
         $actions = $this->type['actions'];
@@ -273,6 +302,13 @@ class PostTypesController extends AppController
         return true;
     }
 
+    /**
+     * Fires an event with the PostType-prefix.
+     *
+     * @param string $action Current action.
+     * @param array $data data that should be sent with the event.
+     * @return void
+     */
     protected function _event($action, $data = [])
     {
         $_event = new Event('Controller.PostTypes.' . $this->type['name'] . '.' . $action, $this, $data);

@@ -135,7 +135,7 @@ class NavBarMenuHelper extends Helper implements MenuBuilderInterface
      */
     public function beforeItem($item = [], $options = [])
     {
-        // TODO: Implement beforeItem() method.
+        return '';
     }
 
     /**
@@ -149,6 +149,6 @@ class NavBarMenuHelper extends Helper implements MenuBuilderInterface
      */
     public function afterItem($item = [], $options = [])
     {
-        // TODO: Implement afterItem() method.
+        return '';
     }
 }

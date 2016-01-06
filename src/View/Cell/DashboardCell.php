@@ -124,7 +124,7 @@ class DashboardCell extends Cell
                 'description' => 'Utilities for Cake 3.x.'
             ],
             'Notifier' => [
-                'url' =>  'https://github.com/cakemanager/cakephp-notifier',
+                'url' => 'https://github.com/cakemanager/cakephp-notifier',
                 'description' => 'Notification plugin for Cake 3.x'
             ],
             'Who Is Online' => [
@@ -151,6 +151,5 @@ class DashboardCell extends Cell
      */
     public function aboutUs()
     {
-        
     }
 }

@@ -14,10 +14,10 @@
  */
 namespace CakeAdmin\Controller\Admin;
 
+use CakeAdmin\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Utility\Hash;
-use CakeAdmin\Controller\AppController;
 use Settings\Core\Setting;
 
 /**
@@ -100,14 +100,12 @@ class SettingsController extends AppController
     }
 
     /**
-     * _prefixExists
-     *
      * Checks if a prefix exists.
      *
      * @param string $prefix The prefix.
      * @return bool
      */
-    private function __prefixExists($prefix)
+    protected function __prefixExists($prefix)
     {
         if (Hash::get($this->prefixes, ucfirst($prefix)) == null) {
             return false;

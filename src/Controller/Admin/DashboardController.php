@@ -14,10 +14,10 @@
  */
 namespace CakeAdmin\Controller\Admin;
 
+use CakeAdmin\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
-use CakeAdmin\Controller\AppController;
 
 /**
  * Dashboard Controller
@@ -28,7 +28,7 @@ class DashboardController extends AppController
 {
 
     /**
-     * Index method
+     * Index method.
      *
      * @return void
      */
@@ -36,5 +36,4 @@ class DashboardController extends AppController
     {
         $this->Menu->active('ca.dashboard');
     }
-
 }

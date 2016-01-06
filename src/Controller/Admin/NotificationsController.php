@@ -24,6 +24,12 @@ use CakeAdmin\Controller\AppController;
 class NotificationsController extends AppController
 {
 
+    /**
+     * beforeFilter event.
+     *
+     * @param \Cake\Event\Event $event Event.
+     * @return void
+     */
     public function beforeFilter(\Cake\Event\Event $event)
     {
         // notifications for index-action have to be loaded here because of the loaded count of unread notifications.
@@ -33,8 +39,12 @@ class NotificationsController extends AppController
         parent::beforeFilter($event);
     }
 
+    /**
+     * Index action.
+     *
+     * @return void
+     */
     public function index()
     {
-        // notifications are loaded in beforeFilter();
     }
 }

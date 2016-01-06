@@ -192,5 +192,4 @@ class SettingsControllerTest extends IntegrationTestCase
 
         $this->assertEquals('First Value Edited', $settings->findByName('App.FirstKey')->toArray()[0]['value']);
     }
-
 }

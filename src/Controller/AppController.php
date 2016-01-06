@@ -25,6 +25,7 @@ class AppController extends Controller
     /**
      * Initialize AppController
      *
+     * @return void
      */
     public function initialize()
     {
@@ -80,9 +81,10 @@ class AppController extends Controller
     }
 
     /**
-     * beforeFilter AppController
+     * beforeFilter event.
      *
-     * @param Event $event
+     * @param Event $event Event.
+     * @return void
      */
     public function beforeFilter(Event $event)
     {
@@ -102,9 +104,10 @@ class AppController extends Controller
     }
 
     /**
-     * beforeRender AppController
+     * beforeRender event.
      *
-     * @param Event $event
+     * @param Event $event Event.
+     * @return void
      */
     public function beforeRender(Event $event)
     {
@@ -118,7 +121,7 @@ class AppController extends Controller
     /**
      * authorizes every administrator on every action.
      *
-     * @param null $user
+     * @param array $user User to authorize.
      * @return bool
      */
     public function isAuthorized($user = null)
@@ -127,8 +130,9 @@ class AppController extends Controller
     }
 
     /**
-     * initializes all admin menu-items
+     * Initializes all admin menu-items.
      *
+     * @return void
      */
     public function initMenuItems()
     {
@@ -180,8 +184,9 @@ class AppController extends Controller
     }
 
     /**
-     * protected method to add the notification-menu-item to the header menu.
+     * Adds the notification-menu-item to the header menu.
      *
+     * @return void
      */
     protected function _addNotificationMenu()
     {
@@ -219,5 +224,4 @@ class AppController extends Controller
             ]
         ]);
     }
-
 }

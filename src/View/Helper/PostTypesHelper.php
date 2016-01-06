@@ -168,7 +168,7 @@ class PostTypesHelper extends Helper
      *
      * Filter-form to search with.
      *
-     * @param $searchFilters Filter-data.
+     * @param array $searchFilters Filter-data.
      * @param array $options Options.
      * @return null|string
      */
@@ -208,7 +208,7 @@ class PostTypesHelper extends Helper
 
         $html .= '<tr>';
 
-        foreach ($this->type()['tableColumns'] as $column => $opt):
+        foreach ($this->type()['tableColumns'] as $column => $opt) :
             $html .= '<th>';
             $html .= $this->Paginator->sort($column);
             $html .= '</th>';
@@ -249,10 +249,10 @@ class PostTypesHelper extends Helper
 
         $html = '';
 
-        foreach ($this->_data as $item):
+        foreach ($this->_data as $item) :
             $html .= '<tr>';
 
-            foreach ($this->_type['tableColumns'] as $column => $opt):
+            foreach ($this->_type['tableColumns'] as $column => $opt) :
                 $html .= '<td>';
                 $html .= $opt['before'];
                 $html .= Hash::get($item->toArray(), $opt['get']);
@@ -263,16 +263,16 @@ class PostTypesHelper extends Helper
             $html .= $options['beforeActionBody'];
 
             $html .= $this->Html->link($options['viewLabel'], [
-                'action' => 'view',
-                'type' => $this->type()['slug'],
-                $item->get('id')
-            ]). ' ';
+                    'action' => 'view',
+                    'type' => $this->type()['slug'],
+                    $item->get('id')
+                ]) . ' ';
 
             $html .= $this->Html->link($options['editLabel'], [
-                'action' => 'edit',
-                'type' => $this->type()['slug'],
-                $item->get('id')
-            ]). ' ';
+                    'action' => 'edit',
+                    'type' => $this->type()['slug'],
+                    $item->get('id')
+                ]) . ' ';
 
             $html .= $this->Form->postLink($options['deleteLabel'], [
                 'action' => 'delete',
@@ -335,7 +335,7 @@ class PostTypesHelper extends Helper
 
         $html .= $options['beforeLegend'] . $options['label'] . $this->type()['alias'] . $options['afterLegend'];
 
-        foreach ($this->type()['formFields'] as $field => $opt):
+        foreach ($this->type()['formFields'] as $field => $opt) :
             if (substr($field, 0, 1) !== '_') {
                 if (in_array($opt['on'], $options['on'])) {
                     echo $this->Form->input($field, $opt);
@@ -381,5 +381,4 @@ class PostTypesHelper extends Helper
     {
         return $this->Form->end();
     }
-
 }

@@ -76,5 +76,4 @@ class NotificationsControllerTest extends IntegrationTestCase
         $this->assertResponseContains('Testing the title');
         $this->assertResponseContains('Testing the body');
     }
-
 }

@@ -140,7 +140,7 @@ class HeaderLeftMenuHelper extends Helper implements MenuBuilderInterface
      */
     public function beforeItem($item = [], $options = [])
     {
-        // TODO: Implement beforeItem() method.
+        return '';
     }
 
     /**
@@ -154,6 +154,6 @@ class HeaderLeftMenuHelper extends Helper implements MenuBuilderInterface
      */
     public function afterItem($item = [], $options = [])
     {
-        // TODO: Implement afterItem() method.
+        return '';
     }
 }

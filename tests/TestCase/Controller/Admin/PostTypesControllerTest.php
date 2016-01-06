@@ -357,7 +357,6 @@ class PostTypesControllerTest extends IntegrationTestCase
 
         $this->assertLayout('default.ctp');
         $this->assertTemplate(DS . 'Template' . DS . 'Admin' . DS . 'PostTypes' . DS . 'edit.ctp');
-
     }
 
     /**
@@ -463,5 +462,4 @@ class PostTypesControllerTest extends IntegrationTestCase
 
         $this->assertEquals(2, $articles->find()->count());
     }
-
 }

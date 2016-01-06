@@ -57,6 +57,12 @@ class PostTypesComponent extends Component
      */
     public $controller = null;
 
+    /**
+     * Initialize component.
+     *
+     * @param array $config Configuration.
+     * @return void
+     */
     public function initialize(array $config)
     {
         $this->setController($this->_registry->getController());
@@ -101,7 +107,6 @@ class PostTypesComponent extends Component
      */
     public function beforeRender($event)
     {
-
     }
 
     /**
@@ -204,11 +209,10 @@ class PostTypesComponent extends Component
      * Returns a list with the formfields of the type.
      *
      * @param string $name Name of the PostType.
-     * @return array
+     * @return void
      */
     public function getFormFields($name)
     {
-
     }
 
     /**
@@ -217,11 +221,10 @@ class PostTypesComponent extends Component
      * Returns a list with the tablecolumns of the type.
      *
      * @param string $name Name of the PostType.
-     * @return array
+     * @return void
      */
     public function getTableColumns($name)
     {
-
     }
 
     /**
@@ -299,6 +302,12 @@ class PostTypesComponent extends Component
         }
     }
 
+    /**
+     * If no tablecolumns are given, this method will be called to generate a list of tablecolumns.
+     *
+     * @param \Cake\ORM\Table $model Model to rely on.
+     * @return array
+     */
     protected function _generateTableColumns($model)
     {
         $model = TableRegistry::get($model);
@@ -328,6 +337,12 @@ class PostTypesComponent extends Component
         return $result;
     }
 
+    /**
+     * If no formfields are given, this method will be called to generate a list of formfields.
+     *
+     * @param \Cake\ORM\Table $model Model to rely on.
+     * @return array
+     */
     protected function _generateFormFields($model)
     {
         $model = TableRegistry::get($model);
@@ -351,6 +366,12 @@ class PostTypesComponent extends Component
         return $result;
     }
 
+    /**
+     * Normalizes the formfields-array.
+     *
+     * @param array $fields Fields to normalize.
+     * @return array
+     */
     protected function _normalizeFormFields($fields)
     {
         $_options = [
@@ -375,6 +396,12 @@ class PostTypesComponent extends Component
         return $result;
     }
 
+    /**
+     * Normalizes the tablecolumns-array.
+     *
+     * @param array $columns Columns to normalize.
+     * @return array
+     */
     protected function _normalizeTableColumns($columns)
     {
         $_defaults = [
@@ -395,26 +422,4 @@ class PostTypesComponent extends Component
         }
         return $result;
     }
-
-    /**
-     * __isTableUsedByPostType
-     *
-     * Checks if the table is already used by any registered PostType.
-     * If a table is used, `true` will be returned. Else, `false` will be returned.
-     *
-     * @param string $tableName Name of the table.
-     * @return bool
-     */
-    private function __isTableUsedByPostType($tableName)
-    {
-        $postTypes = Configure::read('CA.PostTypes');
-        foreach ($postTypes as $name => $options) {
-            if ((array_key_exists('table', $options)) && ($options['table'] === $tableName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
 }
