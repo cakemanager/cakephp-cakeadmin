@@ -25,5 +25,4 @@ class AuthorsTable extends Table
     {
         $this->hasMany('articles');
     }
-
 }

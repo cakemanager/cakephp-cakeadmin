@@ -17,7 +17,6 @@ use Cake\ORM\Table;
 
 /**
  * Book table class
- *
  */
 class BooksTable extends Table
 {
@@ -69,5 +68,4 @@ class BooksTable extends Table
             ]
         ];
     }
-
 }
