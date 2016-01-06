@@ -22,6 +22,10 @@ use Cake\Event\EventManager;
 class AppController extends Controller
 {
 
+    /**
+     * Initialize AppController
+     *
+     */
     public function initialize()
     {
         parent::initialize();
@@ -75,6 +79,11 @@ class AppController extends Controller
         EventManager::instance()->dispatch($event);
     }
 
+    /**
+     * beforeFilter AppController
+     *
+     * @param Event $event
+     */
     public function beforeFilter(Event $event)
     {
         $this->viewBuilder()->theme(Configure::read('CA.theme'));
@@ -92,6 +101,11 @@ class AppController extends Controller
         EventManager::instance()->dispatch($event);
     }
 
+    /**
+     * beforeRender AppController
+     *
+     * @param Event $event
+     */
     public function beforeRender(Event $event)
     {
         $this->set('authUser', $this->authUser);
@@ -101,11 +115,21 @@ class AppController extends Controller
         EventManager::instance()->dispatch($event);
     }
 
+    /**
+     * authorizes every administrator on every action.
+     *
+     * @param null $user
+     * @return bool
+     */
     public function isAuthorized($user = null)
     {
         return true;
     }
 
+    /**
+     * initializes all admin menu-items
+     *
+     */
     public function initMenuItems()
     {
         $this->Menu->area('headerLeft');
@@ -155,6 +179,10 @@ class AppController extends Controller
         }
     }
 
+    /**
+     * protected method to add the notification-menu-item to the header menu.
+     *
+     */
     protected function _addNotificationMenu()
     {
         $this->Menu->area('headerLeft');

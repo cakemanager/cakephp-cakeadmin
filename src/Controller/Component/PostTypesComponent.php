@@ -282,6 +282,14 @@ class PostTypesComponent extends Component
         return [];
     }
 
+    /**
+     * _registerPostTypesFromConfigure
+     *
+     * Registers the PostTypes added via the Configure-class.
+     * The PostType should be added via `CA.Models`.
+     *
+     * @return void
+     */
     protected function _registerPostTypesFromConfigure()
     {
         $configure = Configure::read('CA.Models');

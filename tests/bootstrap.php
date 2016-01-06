@@ -1,120 +1,104 @@
 <?php
-/**
- * CakeManager (http://cakemanager.org)
- * Copyright (c) http://cakemanager.org
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) http://cakemanager.org
- * @link          http://cakemanager.org CakeManager Project
- * @since         1.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-use Cake\Cache\Cache;
+// @codingStandardsIgnoreFile
+
 use Cake\Core\Configure;
-use Cake\Core\Plugin;
-use Cake\Datasource\ConnectionManager;
-use Cake\Log\Log;
-use Cake\Routing\DispatcherFactory;
+use Cake\Filesystem\Folder;
 
-require_once 'vendor/autoload.php';
+$findRoot = function () {
+    $root = dirname(__DIR__);
+    if (is_dir($root . '/vendor/cakephp/cakephp')) {
+        return $root;
+    }
 
-define('ROOT', dirname(__DIR__) . DS);
-define('CAKE_CORE_INCLUDE_PATH', ROOT . 'vendor' . DS . 'cakephp' . DS . 'cakephp');
-define('CORE_PATH', ROOT . 'vendor' . DS . 'cakephp' . DS . 'cakephp' . DS);
+    $root = dirname(dirname(__DIR__));
+    if (is_dir($root . '/vendor/cakephp/cakephp')) {
+        return $root;
+    }
+
+    $root = dirname(dirname(dirname(__DIR__)));
+    if (is_dir($root . '/vendor/cakephp/cakephp')) {
+        return $root;
+    }
+};
+
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+define('ROOT', $findRoot());
+define('APP_DIR', 'App');
+define('WEBROOT_DIR', 'webroot');
+define('APP', ROOT . '/tests/App/');
+define('CONFIG', ROOT . '/tests/config/');
+define('WWW_ROOT', ROOT . DS . WEBROOT_DIR . DS);
+define('TESTS', ROOT . DS . 'tests' . DS);
+define('TMP', ROOT . DS . 'tmp' . DS);
+define('LOGS', TMP . 'logs' . DS);
+define('CACHE', TMP . 'cache' . DS);
+define('CAKE_CORE_INCLUDE_PATH', ROOT . '/vendor/cakephp/cakephp');
+define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
-define('APP', ROOT . 'tests' . DS . 'App' . DS);
-define('TMP', sys_get_temp_dir() . DS);
-define('CACHE', TMP);
-define('LOGS', TMP);
-define('CONFIG', APP . 'config' . DS);
 
-//@codingStandardsIgnoreStart
-@mkdir(LOGS);
-@mkdir(SESSIONS);
-@mkdir(CACHE);
-@mkdir(CACHE . 'views');
-@mkdir(CACHE . 'models');
-//@codingStandardsIgnoreEnd
+require ROOT . '/vendor/autoload.php';
+require CORE_PATH . 'config/bootstrap.php';
 
-require CAKE . 'Core/ClassLoader.php';
-
-$loader = new Cake\Core\ClassLoader;
-$loader->register();
-
-require_once CORE_PATH . 'config' . DS . 'bootstrap.php';
-
-date_default_timezone_set('UTC');
-mb_internal_encoding('UTF-8');
-
-Configure::write('debug', true);
 Configure::write('App', [
     'namespace' => 'CakeAdmin\Test\App',
-    'encoding' => 'UTF-8',
-    'base' => false,
-    'baseUrl' => false,
-    'dir' => 'src',
-    'webroot' => 'webroot',
-    'www_root' => APP . 'webroot',
-    'fullBaseUrl' => 'http://localhost',
-    'imageBaseUrl' => 'img/',
-    'jsBaseUrl' => 'js/',
-    'cssBaseUrl' => 'css/',
     'paths' => [
-        'plugins' => [APP . 'Plugin' . DS],
-        'templates' => [APP . 'Template' . DS]
+        'templates' => [
+            APP . 'Template' . DS
+        ]
     ]
 ]);
+Configure::write('debug', true);
 
-Cache::config([
+$TMP = new Folder(TMP);
+$TMP->create(TMP . 'cache/models', 0777);
+$TMP->create(TMP . 'cache/persistent', 0777);
+$TMP->create(TMP . 'cache/views', 0777);
+
+$cache = [
+    'default' => [
+        'engine' => 'File'
+    ],
     '_cake_core_' => [
-        'engine' => 'File',
-        'prefix' => 'cake_core_',
-        'serialize' => true
+        'className' => 'File',
+        'prefix' => 'cakeadmin_myapp_cake_core_',
+        'path' => CACHE . 'persistent/',
+        'serialize' => true,
+        'duration' => '+10 seconds'
     ],
     '_cake_model_' => [
-        'engine' => 'File',
-        'prefix' => 'cake_model_',
-        'serialize' => true
+        'className' => 'File',
+        'prefix' => 'cakeadmin_my_app_cake_model_',
+        'path' => CACHE . 'models/',
+        'serialize' => 'File',
+        'duration' => '+10 seconds'
     ]
-]);
+];
 
-// Ensure default test connection is defined
-if (!getenv('db_class')) {
-    putenv('db_class=Cake\Database\Driver\Sqlite');
-    putenv('db_dsn=sqlite::memory:');
-}
-
-ConnectionManager::config('test', [
-    'className' => 'Cake\Database\Connection',
-    'driver' => getenv('db_class'),
-    'dsn' => getenv('db_dsn'),
-    'database' => getenv('db_database'),
-    'username' => getenv('db_login'),
-    'password' => getenv('db_password'),
-    'timezone' => 'UTC'
-]);
-
-Configure::write('Session', [
+Cake\Cache\Cache::config($cache);
+Cake\Core\Configure::write('Session', [
     'defaults' => 'php'
 ]);
 
-Log::config([
-    'debug' => [
-        'engine' => 'Cake\Log\Engine\FileLog',
-        'levels' => ['notice', 'info', 'debug'],
-        'file' => 'debug',
-    ],
-    'error' => [
-        'engine' => 'Cake\Log\Engine\FileLog',
-        'levels' => ['warning', 'error', 'critical', 'alert', 'emergency'],
-        'file' => 'error',
-    ]
+// Ensure default test connection is defined
+if (!getenv('db_dsn')) {
+    putenv('db_dsn=sqlite:///:memory:');
+}
+
+Cake\Datasource\ConnectionManager::config('default', [
+    'url' => getenv('db_dsn'),
+    'timezone' => 'UTC'
 ]);
 
-Carbon\Carbon::setTestNow(Carbon\Carbon::now());
+Cake\Datasource\ConnectionManager::config('test', [
+    'url' => getenv('db_dsn'),
+    'timezone' => 'UTC'
+]);
 
-DispatcherFactory::add('Routing');
-DispatcherFactory::add('ControllerFactory');
+Cake\Core\Plugin::load('Settings', ['autoload' => true, 'routes' => true, 'bootstrap' => true]);
+Cake\Core\Plugin::load('Notifier', ['autoload' => true, 'routes' => true, 'bootstrap' => true]);
+Cake\Core\Plugin::load('CakeAdmin', ['path' => ROOT . DS, 'autoload' => true, 'routes' => true, 'bootstrap' => true]);
+
+Cake\Routing\DispatcherFactory::add('Routing');
+Cake\Routing\DispatcherFactory::add('ControllerFactory');

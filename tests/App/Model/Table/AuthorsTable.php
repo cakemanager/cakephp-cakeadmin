@@ -9,32 +9,21 @@
  *
  * @copyright     Copyright (c) http://cakemanager.org
  * @link          http://cakemanager.org CakeManager Project
- * @since         1.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-namespace CakeAdmin\Controller\Admin;
+namespace CakeAdmin\Test\App\Model\Table;
 
-use Cake\Core\Configure;
-use Cake\Datasource\ConnectionManager;
-use Cake\ORM\TableRegistry;
-use CakeAdmin\Controller\AppController;
+use Cake\ORM\Table;
 
 /**
- * Dashboard Controller
+ * Article table class
  *
- * @property \CakeAdmin\Model\Table\DashboardTable $Dashboard
  */
-class DashboardController extends AppController
+class AuthorsTable extends Table
 {
-
-    /**
-     * Index method
-     *
-     * @return void
-     */
-    public function index()
+    public function initialize(array $config)
     {
-        $this->Menu->active('ca.dashboard');
+        $this->hasMany('articles');
     }
 
 }

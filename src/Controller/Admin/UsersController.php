@@ -43,6 +43,7 @@ class UsersController extends AppController
         $this->Auth->allow([
             'forgot',
             'reset',
+            'login'
         ]);
 
         $this->loadModel('CakeAdmin.Administrators');
@@ -57,7 +58,7 @@ class UsersController extends AppController
      */
     public function login()
     {
-        if($this->authUser) {
+        if ($this->authUser) {
             return $this->redirect($this->Auth->redirectUrl());
         }
 
@@ -114,7 +115,7 @@ class UsersController extends AppController
             if ($user->count()) {
                 $user = $user->first();
                 $user->set('request_key', $this->Administrators->generateRequestKey());
-                if($this->Users->save($user)) {
+                if ($this->Users->save($user)) {
                     $event = new Event('Controller.Admin.Users.afterForgotPassword', $this, [
                         'user' => $user
                     ]);

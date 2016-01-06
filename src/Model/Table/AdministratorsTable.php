@@ -86,24 +86,27 @@ class AdministratorsTable extends Table
         $validator
             ->add('new_password', 'custom', [
                 'rule' => function ($value, $context) {
+                    if (!array_key_exists('confirm_password', $context['data'])) {
+                        return false;
+                    }
                     if ($value !== $context['data']['confirm_password']) {
                         return false;
                     }
                     return true;
                 },
-                'message' => __('Passwords are not equal.'),
-            ]);
+                'message' => __('Passwords are not equal.'),]);
 
         $validator
-            ->add('confirm_password', 'custom', [
-                'rule' => function ($value, $context) {
-                    if ($value !== $context['data']['new_password']) {
-                        return false;
-                    }
-                    return true;
-                },
-                'message' => __('Passwords are not equal.'),
-            ]);
+            ->add('confirm_password', 'custom', ['rule' => function ($value, $context) {
+                if (!array_key_exists('new_password', $context['data'])) {
+                    return false;
+                }
+                if ($value !== $context['data']['new_password']) {
+                    return false;
+                }
+                return true;
+            },
+                'message' => __('Passwords are not equal.'),]);
 
         return $validator;
     }
@@ -115,14 +118,16 @@ class AdministratorsTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
+    public
+    function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
         return $rules;
     }
 
 
-    public function beforeFind($event, $query, $options, $primary)
+    public
+    function beforeFind($event, $query, $options, $primary)
     {
         $query->where(['Administrators.cakeadmin' => true]);
     }
@@ -135,7 +140,8 @@ class AdministratorsTable extends Table
      * @param array $options Options.
      * @return void
      */
-    public function beforeSave($event, $entity, $options)
+    public
+    function beforeSave($event, $entity, $options)
     {
         $entity->set('cakeadmin', true);
 
@@ -154,9 +160,10 @@ class AdministratorsTable extends Table
      * @param array $options Options.
      * @return void
      */
-    public function afterSave($event, $entity, $options)
+    public
+    function afterSave($event, $entity, $options)
     {
-        if($entity->isNew()) {
+        if ($entity->isNew()) {
             NotificationManager::instance()->notify([
                 'recipientLists' => ['administrators'],
                 'template' => 'newAdministrator',
@@ -176,7 +183,8 @@ class AdministratorsTable extends Table
      *
      * @return string
      */
-    public function generateRequestKey()
+    public
+    function generateRequestKey()
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -196,7 +204,8 @@ class AdministratorsTable extends Table
      * @param string $activationKey Activation key of the user.
      * @return bool
      */
-    public function validateRequestKey($email, $requestKey = null)
+    public
+    function validateRequestKey($email, $requestKey = null)
     {
         if (!$requestKey) {
             return false;
