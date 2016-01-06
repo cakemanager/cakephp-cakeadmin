@@ -127,8 +127,8 @@ class PostTypesComponent extends Component
             'name' => ucfirst(Inflector::slug(pluginSplit($model)[1])),
             'alias' => ucfirst(Inflector::humanize(pluginSplit($model)[1])),
             'aliasLc' => lcfirst(Inflector::humanize(pluginSplit($model)[1])),
-            'singluarAlias' => ucfirst(Inflector::singularize(Inflector::humanize(pluginSplit($model)[1]))),
-            'singluarAliasLc' => lcfirst(Inflector::singularize(Inflector::humanize(pluginSplit($model)[1]))),
+            'singularAlias' => ucfirst(Inflector::singularize(Inflector::humanize(pluginSplit($model)[1]))),
+            'singularAliasLc' => lcfirst(Inflector::singularize(Inflector::humanize(pluginSplit($model)[1]))),
             'description' => null,
             'actions' => [
                 'index' => true,

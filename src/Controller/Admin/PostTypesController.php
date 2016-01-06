@@ -157,10 +157,10 @@ class PostTypesController extends AppController
         if ($this->request->is('post')) {
             $entity = $this->Model->patchEntity($entity, $this->request->data());
             if ($this->Model->save($entity)) {
-                $this->Flash->success(__('The {0} has been saved.', [$this->type['singluarAliasLc']]));
+                $this->Flash->success(__('The {0} has been saved.', [$this->type['singularAliasLc']]));
                 return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
             } else {
-                $this->Flash->error(__('The {0} could not be saved. Please, try again.', [$this->type['singluarAliasLc']]));
+                $this->Flash->error(__('The {0} could not be saved. Please, try again.', [$this->type['singularAliasLc']]));
             }
         }
 
@@ -194,10 +194,10 @@ class PostTypesController extends AppController
             $entity->accessible('*', true);
             $entity = $this->Model->patchEntity($entity, $this->request->data());
             if ($this->Model->save($entity)) {
-                $this->Flash->success(__('The {0} has been edited.', [$this->type['singluarAliasLc']]));
+                $this->Flash->success(__('The {0} has been edited.', [$this->type['singularAliasLc']]));
                 return $this->redirect(['action' => 'index', 'type' => $this->type['name']]);
             } else {
-                $this->Flash->error(__('The {0} could not be edited. Please, try again.', [$this->type['singluarAliasLc']]));
+                $this->Flash->error(__('The {0} could not be edited. Please, try again.', [$this->type['singularAliasLc']]));
             }
         }
 
@@ -230,9 +230,9 @@ class PostTypesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
 
         if ($this->Model->delete($entity)) {
-            $this->Flash->success(__('The {0} has been deleted.', [$this->type['singluarAliasLc']]));
+            $this->Flash->success(__('The {0} has been deleted.', [$this->type['singularAliasLc']]));
         } else {
-            $this->Flash->error(__('The {0} could not be deleted. Please, try again.', [$this->type['singluarAliasLc']]));
+            $this->Flash->error(__('The {0} could not be deleted. Please, try again.', [$this->type['singularAliasLc']]));
         }
 
         $this->_event('afterDelete', [
