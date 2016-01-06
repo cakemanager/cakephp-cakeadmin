@@ -111,7 +111,6 @@ class UsersFixture extends TestFixture
      */
     public $records = [
         [
-            'id' => 1,
             'email' => 'bob@cakeplugins.org',
             'password' => '12345',
             'cakeadmin' => 1,
@@ -119,7 +118,6 @@ class UsersFixture extends TestFixture
             'modified' => '2015-12-18 15:37:51'
         ],
         [
-            'id' => 2,
             'email' => 'unknown@cakeplugins.org',
             'password' => '12345',
             'cakeadmin' => 0,
