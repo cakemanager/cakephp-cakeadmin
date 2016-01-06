@@ -125,7 +125,7 @@ class PostTypesControllerTest extends IntegrationTestCase
         $this->assertResponseContains('<li class="active"><a href="/admin/posttypes/articles/index">Articles</a></li>');
 
         $this->assertLayout('default.ctp');
-        $this->assertTemplate('\Template\Admin\PostTypes\index.ctp');
+        $this->assertTemplate(DS . 'Template' . DS . 'Admin' . DS . 'PostTypes' . DS . 'index.ctp');
     }
 
     /**
@@ -191,7 +191,7 @@ class PostTypesControllerTest extends IntegrationTestCase
         $this->assertResponseContains('<li class="active"><a href="/admin/posttypes/articles/index">Articles</a></li>');
 
         $this->assertLayout('default.ctp');
-        $this->assertTemplate('\Template\Admin\PostTypes\view.ctp');
+        $this->assertTemplate(DS . 'Template' . DS . 'Admin' . DS . 'PostTypes' . DS . 'view.ctp');
     }
 
     /**
@@ -257,7 +257,7 @@ class PostTypesControllerTest extends IntegrationTestCase
         $this->assertResponseContains('<li class="active"><a href="/admin/posttypes/articles/index">Articles</a></li>');
 
         $this->assertLayout('default.ctp');
-        $this->assertTemplate('\Template\Admin\PostTypes\add.ctp');
+        $this->assertTemplate(DS . 'Template' . DS . 'Admin' . DS . 'PostTypes' . DS . 'add.ctp');
     }
 
     /**
@@ -356,7 +356,8 @@ class PostTypesControllerTest extends IntegrationTestCase
         $this->assertResponseContains('<li class="active"><a href="/admin/posttypes/articles/index">Articles</a></li>');
 
         $this->assertLayout('default.ctp');
-        $this->assertTemplate('\Template\Admin\PostTypes\edit.ctp');
+        $this->assertTemplate(DS . 'Template' . DS . 'Admin' . DS . 'PostTypes' . DS . 'edit.ctp');
+
     }
 
     /**
