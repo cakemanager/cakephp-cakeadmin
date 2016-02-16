@@ -1,0 +1,169 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2016-02-16 00:52+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: Controller/AppController.php:148
+msgid "Logout"
+msgstr ""
+
+#: Controller/AppController.php:160
+msgid "Dashboard"
+msgstr ""
+
+#: Controller/AppController.php:171
+msgid "Settings"
+msgstr ""
+
+#: Controller/AppController.php:196
+msgid "Notifications ({0})"
+msgstr ""
+
+#: Controller/AppController.php:218
+msgid "All Notifications"
+msgstr ""
+
+#: Controller/Admin/PostTypesController.php:166
+msgid "The {0} has been saved."
+msgstr ""
+
+#: Controller/Admin/PostTypesController.php:169
+msgid "The {0} could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Admin/PostTypesController.php:203
+msgid "The {0} has been edited."
+msgstr ""
+
+#: Controller/Admin/PostTypesController.php:206
+msgid "The {0} could not be edited. Please, try again."
+msgstr ""
+
+#: Controller/Admin/PostTypesController.php:239
+msgid "The {0} has been deleted."
+msgstr ""
+
+#: Controller/Admin/PostTypesController.php:241
+msgid "The {0} could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/Admin/UsersController.php:70
+msgid "Invalid username or password, try again"
+msgstr ""
+
+#: Controller/Admin/UsersController.php:85
+msgid "You are now logged out."
+msgstr ""
+
+#: Controller/Admin/UsersController.php:109
+msgid "Check your e-mail to change your password."
+msgstr ""
+
+#: Controller/Admin/UsersController.php:146;152
+msgid "Your account could not be reset."
+msgstr ""
+
+#: Controller/Admin/UsersController.php:169
+msgid "Your password has been changed."
+msgstr ""
+
+#: Controller/Admin/UsersController.php:173
+msgid "Your account could not be activated."
+msgstr ""
+
+#: Mailer/CakeAdminMailer.php:51
+msgid "Forgot Password"
+msgstr ""
+
+#: Model/Table/AdministratorsTable.php:57
+msgid "Administrators"
+msgstr ""
+
+#: Model/Table/AdministratorsTable.php:58
+msgid "administrators"
+msgstr ""
+
+#: Model/Table/AdministratorsTable.php:59
+msgid "Administrator"
+msgstr ""
+
+#: Model/Table/AdministratorsTable.php:60
+msgid "administrator"
+msgstr ""
+
+#: Model/Table/AdministratorsTable.php:118;130
+msgid "Passwords are not equal."
+msgstr ""
+
+#: Template/Admin/PostTypes/index.ctp:37
+msgid "previous"
+msgstr ""
+
+#: Template/Admin/PostTypes/index.ctp:39
+msgid "next"
+msgstr ""
+
+#: Template/Admin/Settings/index.ctp:25
+#: View/Helper/PostTypesHelper.php:364
+msgid "Submit"
+msgstr ""
+
+#: Template/Admin/Users/forgot.ctp:5
+#: Template/Admin/Users/login.ctp:31
+msgid "Forgot password"
+msgstr ""
+
+#: Template/Admin/Users/forgot.ctp:8
+msgid "Request"
+msgstr ""
+
+#: Template/Admin/Users/login.ctp:18;25;29
+msgid "Login"
+msgstr ""
+
+#: Template/Admin/Users/reset.ctp:5
+msgid "New Password"
+msgstr ""
+
+#: Template/Admin/Users/reset.ctp:9
+msgid "Save"
+msgstr ""
+
+#: Template/Layout/default.ctp:56
+msgid "Menu"
+msgstr ""
+
+#: View/Helper/PostTypesHelper.php:202
+msgid "Actions"
+msgstr ""
+
+#: View/Helper/PostTypesHelper.php:243
+msgid "View"
+msgstr ""
+
+#: View/Helper/PostTypesHelper.php:244
+msgid "Edit"
+msgstr ""
+
+#: View/Helper/PostTypesHelper.php:245
+msgid "Delete"
+msgstr ""
+
+#: View/Helper/PostTypesHelper.php:282
+msgid "Are you sure you want to delete # {0}?"
+msgstr ""
+
+#: View/Helper/PostTypesHelper.php:328
+msgid "Add "
+msgstr ""
