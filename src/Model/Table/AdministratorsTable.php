@@ -54,6 +54,10 @@ class AdministratorsTable extends Table
     public function postType()
     {
         return [
+            'alias' => __d('CakeAdmin', 'Administrators'),
+            'aliasLc' => __d('CakeAdmin', 'administrators'),
+            'singularAlias' => __d('CakeAdmin', 'Administrator'),
+            'singularAliasLc' => __d('CakeAdmin', 'administrator'),
             'formFields' => [
                 'email',
                 'new_password' => [
@@ -111,7 +115,7 @@ class AdministratorsTable extends Table
                     }
                     return true;
                 },
-                'message' => __('Passwords are not equal.')]);
+                'message' => __d('CakeAdmin', 'Passwords are not equal.')]);
 
         $validator
             ->add('confirm_password', 'custom', ['rule' => function ($value, $context) {
@@ -123,7 +127,7 @@ class AdministratorsTable extends Table
                 }
                 return true;
             },
-                'message' => __('Passwords are not equal.')]);
+                'message' => __d('CakeAdmin', 'Passwords are not equal.')]);
 
         return $validator;
     }

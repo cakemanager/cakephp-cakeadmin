@@ -2,10 +2,10 @@
     <?= $this->Flash->render('auth') ?>
     <?= $this->Form->create() ?>
     <fieldset>
-        <legend><?= __('New Password') ?></legend>
+        <legend><?= __d('CakeAdmin', 'New Password') ?></legend>
         <?= $this->Form->input('new_password', ['type' => 'password', 'value' => '']) ?>
         <?= $this->Form->input('confirm_password', ['type' => 'password', 'value' => '']) ?>
     </fieldset>
-    <?= $this->Form->button(__('Save')); ?>
+    <?= $this->Form->button(__d('CakeAdmin', 'Save')); ?>
     <?= $this->Form->end() ?>
 </div>

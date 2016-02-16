@@ -48,7 +48,7 @@ class CakeAdminMailer extends Mailer
         $this->emailFormat('both');
         $this->from($from);
         $this->to($user['email']);
-        $this->subject(__('Forgot Password'));
+        $this->subject(__d('CakeAdmin', 'Forgot Password'));
         $this->transport(Configure::read('CA.email.transport'));
     }
 }

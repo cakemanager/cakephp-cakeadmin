@@ -145,7 +145,7 @@ class AppController extends Controller
 
         $this->Menu->add('ca.logout', [
             'parent' => 'ca.user',
-            'title' => __('Logout'),
+            'title' => __d('CakeAdmin', 'Logout'),
             'url' => [
                 'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
@@ -157,7 +157,7 @@ class AppController extends Controller
         $this->Menu->area('main');
 
         $this->Menu->add('ca.dashboard', [
-            'title' => __('Dashboard'),
+            'title' => __d('CakeAdmin', 'Dashboard'),
             'url' => [
                 'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
@@ -168,7 +168,7 @@ class AppController extends Controller
         ]);
 
         $this->Menu->add('ca.settings', [
-            'title' => __('Settings'),
+            'title' => __d('CakeAdmin', 'Settings'),
             'url' => [
                 'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
@@ -193,7 +193,7 @@ class AppController extends Controller
         $this->Menu->area('headerLeft');
 
         $this->Menu->add('notifier.notifications', [
-            'title' => 'Notifications (' . $this->Notifier->countNotifications(null, true) . ')',
+            'title' => __d('CakeAdmin', 'Notifications ({0})', $this->Notifier->countNotifications(null, true)),
             'url' => '#',
             'weight' => 5
         ]);
@@ -215,7 +215,7 @@ class AppController extends Controller
 
         $this->Menu->add('notifier.notifications.url', [
             'parent' => 'notifier.notifications',
-            'title' => '> All Notifications',
+            'title' => '> ' . __d('CakeAdmin','All Notifications'),
             'url' => [
                 'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',

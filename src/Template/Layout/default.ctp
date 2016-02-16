@@ -53,7 +53,7 @@ $this->assign('title', $title);
 
         <div class="row">
             <div class="actions columns large-2 medium-3">
-                <h3><?= __('Menu') ?></h3>
+                <h3><?= __d('CakeAdmin', 'Menu') ?></h3>
                 <ul class="side-nav">
                     <?= $this->Menu->menu('main', 'CakeAdmin.MainMenu') ?>
                 </ul>

@@ -67,7 +67,7 @@ class UsersController extends AppController
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error(__('Invalid username or password, try again'));
+            $this->Flash->error(__d('CakeAdmin', 'Invalid username or password, try again'));
         } else {
             $this->request->data['email'] = $this->request->query('email');
         }
@@ -82,7 +82,7 @@ class UsersController extends AppController
      */
     public function logout()
     {
-        $this->Flash->success(__('You are now logged out.'));
+        $this->Flash->success(__d('CakeAdmin', 'You are now logged out.'));
         return $this->redirect($this->Auth->logout());
     }
 
@@ -106,7 +106,7 @@ class UsersController extends AppController
             return $this->redirect('/login');
         }
 
-        $this->Flash->success(__('Check your e-mail to change your password.'));
+        $this->Flash->success(__d('CakeAdmin', 'Check your e-mail to change your password.'));
 
         if ($this->request->is('post')) {
             $user = $this->Administrators->findByEmail($this->request->data('email'));
@@ -143,13 +143,13 @@ class UsersController extends AppController
     {
         // Redirect if user is already logged in
         if ($this->authUser) {
-            $this->Flash->error(__('Your account could not be reset.'));
+            $this->Flash->error(__d('CakeAdmin', 'Your account could not be reset.'));
             return $this->redirect($this->Auth->config('loginAction') + ['email' => $email]);
         }
 
         // If the email and key doesn't match
         if (!$this->Administrators->validateRequestKey($email, $requestKey)) {
-            $this->Flash->error(__('Your account could not be reset.'));
+            $this->Flash->error(__d('CakeAdmin', 'Your account could not be reset.'));
             return $this->redirect($this->Auth->config('loginAction') + ['email' => $email]);
         }
 
@@ -166,11 +166,11 @@ class UsersController extends AppController
                 $user->set('request_key', null);
 
                 if ($this->Administrators->save($user)) {
-                    $this->Flash->success(__('Your password has been changed.'));
+                    $this->Flash->success(__d('CakeAdmin', 'Your password has been changed.'));
                     return $this->redirect($this->Auth->config('loginAction') + ['email' => $email]);
                 }
             }
-            $this->Flash->error(__('Your account could not be activated.'));
+            $this->Flash->error(__d('CakeAdmin', 'Your account could not be activated.'));
         }
     }
 }
