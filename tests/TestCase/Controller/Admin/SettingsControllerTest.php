@@ -115,10 +115,10 @@ class SettingsControllerTest extends IntegrationTestCase
         $this->assertEquals('App.FirstKey', $settingVar[0]->name);
         $this->assertEquals('App.SecondKey', $settingVar[1]->name);
 
-        $formElement = '<div class="form-group text"><label class=" control-label "  for="0-value">FirstKey</label><input type="text" name="0[value]" class="form-control "  options=""  id="0-value" value="First Value" /></div>';
+        $formElement = '<div class="form-group text"><label class="control-label"  for="0-value">FirstKey</label><input type="text" name="0[value]" class="form-control"  options=""  id="0-value" value="First Value" /></div>';
         $this->assertResponseContains($formElement);
 
-        $formElement = '<div class="form-group text"><label class=" control-label "  for="1-value">SecondKey</label><input type="text" name="1[value]" class="form-control "  options=""  id="1-value" value="Second Value" /></div>';
+        $formElement = '<div class="form-group text"><label class="control-label"  for="1-value">SecondKey</label><input type="text" name="1[value]" class="form-control"  options=""  id="1-value" value="Second Value" /></div>';
         $this->assertResponseContains($formElement);
     }
 
@@ -156,7 +156,7 @@ class SettingsControllerTest extends IntegrationTestCase
         $this->assertEquals(1, count($settingVar));
         $this->assertEquals('CA.ThirthKey', $settingVar[0]->name);
 
-        $formElement = '<div class="form-group text"><label class=" control-label "  for="0-value">ThirthKey</label><input type="text" name="0[value]" class="form-control "  options=""  id="0-value" value="Thirth Value" /></div>';
+        $formElement = '<div class="form-group text"><label class="control-label"  for="0-value">ThirthKey</label><input type="text" name="0[value]" class="form-control"  options=""  id="0-value" value="Thirth Value" /></div>';
         $this->assertResponseContains($formElement);
     }
 

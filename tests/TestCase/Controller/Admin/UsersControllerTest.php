@@ -70,8 +70,8 @@ class UsersControllerTest extends IntegrationTestCase
 
         $this->assertResponseSuccess();
 
-        $this->assertResponseContains('<input type="email" name="email" class="form-control "  placeholder="E-mail" autofocus="autofocus" id="email" />');
-        $this->assertResponseContains('<input type="password" name="password" class="form-control "  placeholder="Password" id="password" value="" />');
+        $this->assertResponseContains('<input type="email" name="email" class="form-control"  placeholder="E-mail" autofocus="autofocus" id="email" />');
+        $this->assertResponseContains('<input type="password" name="password" class="form-control"  placeholder="Password" id="password" value="" />');
     }
 
     /**
@@ -186,7 +186,7 @@ class UsersControllerTest extends IntegrationTestCase
 
         $this->assertResponseSuccess();
 
-        $this->assertResponseContains('<input type="email" name="email" class="form-control "  placeholder="E-mail" autofocus="autofocus" id="email" value="bob@cakeplugins.org" />');
+        $this->assertResponseContains('<input type="email" name="email" class="form-control"  placeholder="E-mail" autofocus="autofocus" id="email" value="bob@cakeplugins.org" />');
     }
 
     /**
@@ -319,8 +319,8 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertResponseSuccess();
 
         $this->assertResponseContains('<form method="post" role="form" action="/admin/users/reset/bob@cakeplugins.org/custom_request_key">');
-        $this->assertResponseContains('<input type="password" name="new_password" class="form-control "  id="new-password" value="" />');
-        $this->assertResponseContains('<input type="password" name="confirm_password" class="form-control "  id="confirm-password" value="" />');
+        $this->assertResponseContains('<input type="password" name="new_password" class="form-control"  id="new-password" value="" />');
+        $this->assertResponseContains('<input type="password" name="confirm_password" class="form-control"  id="confirm-password" value="" />');
     }
 
     /**
