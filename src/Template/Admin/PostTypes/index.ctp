@@ -34,9 +34,9 @@ $this->PostTypes->data($data);
 </table>
 <div class="paginator">
     <ul class="pagination">
-        <?= $this->Paginator->prev('< ' . __('previous')); ?>
+        <?= $this->Paginator->prev('< ' . __d('CakeAdmin', 'previous')); ?>
         <?= $this->Paginator->numbers(); ?>
-        <?= $this->Paginator->next(__('next') . ' >'); ?>
+        <?= $this->Paginator->next(__d('CakeAdmin', 'next') . ' >'); ?>
     </ul>
     <p><?= $this->Paginator->counter(); ?></p>
 </div>

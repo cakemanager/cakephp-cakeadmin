@@ -22,6 +22,6 @@ foreach ($settings as $id => $setting) {
     ]);
 }
 
-echo $this->Form->button(__('Submit'));
+echo $this->Form->button(__d('CakeAdmin', 'Submit'));
 
 echo $this->Form->end();

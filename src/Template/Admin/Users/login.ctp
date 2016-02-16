@@ -15,16 +15,18 @@
 
 use Cake\Core\Configure;
 
+$this->set('title', __d('CakeAdmin', 'Login'));
+
 ?>
 <div class="users form">
     <?= $this->Flash->render('auth') ?>
     <?= $this->Form->create() ?>
     <fieldset>
-        <legend><?= __('Login') ?></legend>
+        <legend><?= __d('CakeAdmin', 'Login') ?></legend>
         <?= $this->Form->input(Configure::read('CA.fields.username')) ?>
         <?= $this->Form->input(Configure::read('CA.fields.password'), ['value' => '']) ?>
     </fieldset>
-    <?= $this->Form->button(__('Login')); ?>
+    <?= $this->Form->button(__d('CakeAdmin', 'Login')); ?>
     <?= $this->Form->end() ?>
-    <?= $this->Html->link('Forgot password', ['action' => 'forgot']); ?>
+    <?= $this->Html->link(__d('CakeAdmin', 'Forgot password'), ['action' => 'forgot']); ?>
 </div>

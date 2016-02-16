@@ -2,10 +2,10 @@
     <?= $this->Flash->render('auth') ?>
     <?= $this->Form->create() ?>
     <fieldset>
-        <legend><?= __('Forgot password') ?></legend>
+        <legend><?= __d('CakeAdmin', 'Forgot password') ?></legend>
         <?= $this->Form->input('email') ?>
     </fieldset>
-    <?= $this->Form->button(__('Request')); ?>
+    <?= $this->Form->button(__d('CakeAdmin', 'Request')); ?>
     <?= $this->Form->end() ?>
     <?= $this->Html->link('Login', ['action' => 'login']); ?>
 </div>

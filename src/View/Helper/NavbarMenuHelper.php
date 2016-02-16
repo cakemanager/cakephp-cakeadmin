@@ -105,7 +105,7 @@ class NavBarMenuHelper extends Helper implements MenuBuilderInterface
     {
         $html = '<li style="display: inline; list-style-type: none; padding-right: 20px;">';
         $html .= (key_exists('active', $item) && $item['active'] ? '<b>' : '');
-        $html .= $this->Html->link(__($item['title']), $item['url']);
+        $html .= $this->Html->link($item['title'] , $item['url']);
         $html .= (key_exists('active', $item) ? '</b>' : '');
         $html .= '</li>';
         return $html;

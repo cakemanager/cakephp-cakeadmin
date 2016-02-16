@@ -110,7 +110,7 @@ class MainMenuHelper extends Helper implements MenuBuilderInterface
     public function item($item = [], $options = [])
     {
         $html = '<li ' . ($item['active'] ? 'class="active"' : '') . '>' .
-            $this->Html->link(__($item['title']), $item['url']) . '</li>';
+            $this->Html->link($item['title'], $item['url']) . '</li>';
         return $html;
     }
 

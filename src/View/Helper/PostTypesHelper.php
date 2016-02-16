@@ -199,7 +199,7 @@ class PostTypesHelper extends Helper
         $_options = [
             'beforeActionHead' => '<td class="actions">',
             'afterActionHead' => '</td>',
-            'actionsLabel' => __('Actions'),
+            'actionsLabel' => __d('CakeAdmin', 'Actions'),
         ];
 
         $options = array_merge($_options, $options);
@@ -240,9 +240,9 @@ class PostTypesHelper extends Helper
         $_options = [
             'beforeActionBody' => '<td class="actions">',
             'afterActionBody' => '</td>',
-            'viewLabel' => __('View'),
-            'editLabel' => __('Edit'),
-            'deleteLabel' => __('Delete'),
+            'viewLabel' => __d('CakeAdmin', 'View'),
+            'editLabel' => __d('CakeAdmin', 'Edit'),
+            'deleteLabel' => __d('CakeAdmin', 'Delete'),
         ];
 
         $options = array_merge($_options, $options);
@@ -279,7 +279,7 @@ class PostTypesHelper extends Helper
                 'type' => $this->type()['slug'],
                 $item->get('id')
             ], [
-                'confirm' => __('Are you sure you want to delete # {0}?', $item->get('id'))
+                'confirm' => __d('CakeAdmin', 'Are you sure you want to delete # {0}?', $item->get('id'))
             ]);
 
             $html .= $options['afterActionBody'];
@@ -325,7 +325,7 @@ class PostTypesHelper extends Helper
         $_options = [
             'beforeLegend' => '<legend>',
             'afterLegend' => '</legend>',
-            'label' => __('Add '),
+            'label' => __d('CakeAdmin', 'Add '),
             'on' => ['both']
         ];
 
@@ -361,7 +361,7 @@ class PostTypesHelper extends Helper
     public function submitForm($options = [])
     {
         $_options = [
-            'submitLabel' => __('Submit'),
+            'submitLabel' => __d('CakeAdmin', 'Submit'),
             'options' => [],
         ];
 
