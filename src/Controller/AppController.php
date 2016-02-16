@@ -215,7 +215,7 @@ class AppController extends Controller
 
         $this->Menu->add('notifier.notifications.url', [
             'parent' => 'notifier.notifications',
-            'title' => '> ' . __d('CakeAdmin','All Notifications'),
+            'title' => '> ' . __d('CakeAdmin', 'All Notifications'),
             'url' => [
                 'prefix' => 'admin',
                 'plugin' => 'CakeAdmin',
