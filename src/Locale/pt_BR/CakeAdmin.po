@@ -1,0 +1,168 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CakeAdmin 1\n"
+"POT-Creation-Date: 2016-02-15 22:53-0200\n"
+"PO-Revision-Date: 2016-02-15 22:58-0200\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#: Controller/AppController.php:148
+msgid "Logout"
+msgstr "Sair"
+
+#: Controller/AppController.php:160
+msgid "Dashboard"
+msgstr "Resumo"
+
+#: Controller/AppController.php:171
+msgid "Settings"
+msgstr "Configurações"
+
+#: Controller/AppController.php:196
+msgid "Notifications ({0})"
+msgstr "Notificações ({0})"
+
+#: Controller/AppController.php:218
+msgid "All Notifications"
+msgstr "Todas Notificações"
+
+#: Controller/Admin/PostTypesController.php:166
+msgid "The {0} has been saved."
+msgstr "{0} foi salvo."
+
+#: Controller/Admin/PostTypesController.php:169
+msgid "The {0} could not be saved. Please, try again."
+msgstr "{0} não foi salvo. Tente novamente."
+
+#: Controller/Admin/PostTypesController.php:203
+msgid "The {0} has been edited."
+msgstr "{0} foi editado."
+
+#: Controller/Admin/PostTypesController.php:206
+msgid "The {0} could not be edited. Please, try again."
+msgstr "{0} não foi editado. Tente novamente."
+
+#: Controller/Admin/PostTypesController.php:239
+msgid "The {0} has been deleted."
+msgstr "{0} foi removido."
+
+#: Controller/Admin/PostTypesController.php:241
+msgid "The {0} could not be deleted. Please, try again."
+msgstr "{0} não foi removido. Tente novamente."
+
+#: Controller/Admin/UsersController.php:70
+msgid "Invalid username or password, try again"
+msgstr "Usuário ou senha inválidos. Tente novamente."
+
+#: Controller/Admin/UsersController.php:85
+msgid "You are now logged out."
+msgstr "Você saiu do sistema."
+
+#: Controller/Admin/UsersController.php:109
+msgid "Check your e-mail to change your password."
+msgstr "Verifique seu e-mail para mudar a senha."
+
+#: Controller/Admin/UsersController.php:146;152
+msgid "Your account could not be reset."
+msgstr "Sua conta não pode ser recuperada."
+
+#: Controller/Admin/UsersController.php:169
+msgid "Your password has been changed."
+msgstr "Sua senha foi alterada."
+
+#: Controller/Admin/UsersController.php:173
+msgid "Your account could not be activated."
+msgstr "Sua conta não pode ser ativada."
+
+#: Mailer/CakeAdminMailer.php:51
+msgid "Forgot Password"
+msgstr "Esqueci a senha"
+
+#: Model/Table/AdministratorsTable.php:57
+msgid "Administrators"
+msgstr "Administradores"
+
+#: Model/Table/AdministratorsTable.php:58
+msgid "administrators"
+msgstr "administradores"
+
+#: Model/Table/AdministratorsTable.php:59
+msgid "Administrator"
+msgstr "Administrador"
+
+#: Model/Table/AdministratorsTable.php:60
+msgid "administrator"
+msgstr "administrador"
+
+#: Model/Table/AdministratorsTable.php:118;130
+msgid "Passwords are not equal."
+msgstr "As senhas não são iguais"
+
+#: Template/Admin/PostTypes/index.ctp:37
+msgid "previous"
+msgstr "anterior"
+
+#: Template/Admin/PostTypes/index.ctp:39
+msgid "next"
+msgstr "próximo"
+
+#: Template/Admin/Settings/index.ctp:25 View/Helper/PostTypesHelper.php:364
+msgid "Submit"
+msgstr "Enviar"
+
+#: Template/Admin/Users/forgot.ctp:5 Template/Admin/Users/login.ctp:31
+msgid "Forgot password"
+msgstr "Esqueci a senha"
+
+#: Template/Admin/Users/forgot.ctp:8
+msgid "Request"
+msgstr "Solicitar"
+
+#: Template/Admin/Users/login.ctp:18;25;29
+msgid "Login"
+msgstr "Entrar"
+
+#: Template/Admin/Users/reset.ctp:5
+msgid "New Password"
+msgstr "Nova Senha"
+
+#: Template/Admin/Users/reset.ctp:9
+msgid "Save"
+msgstr "Salvar"
+
+#: Template/Layout/default.ctp:56
+msgid "Menu"
+msgstr "Menu"
+
+#: View/Helper/PostTypesHelper.php:202
+msgid "Actions"
+msgstr "Ações"
+
+#: View/Helper/PostTypesHelper.php:243
+msgid "View"
+msgstr "Visualizar"
+
+#: View/Helper/PostTypesHelper.php:244
+msgid "Edit"
+msgstr "Editar"
+
+#: View/Helper/PostTypesHelper.php:245
+msgid "Delete"
+msgstr "Remover"
+
+#: View/Helper/PostTypesHelper.php:282
+msgid "Are you sure you want to delete # {0}?"
+msgstr "Você tem certeza que deseja remover #{0}?"
+
+#: View/Helper/PostTypesHelper.php:328
+msgid "Add "
+msgstr "Adicionar "
