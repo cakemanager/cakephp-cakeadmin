@@ -1,0 +1,49 @@
+template:
+  url: https://github.com/CouscousPHP/Template-Light.git
+  index: index.md
+
+include:
+  - docs
+
+exclude:
+    - vendor
+    - website
+    - some/dir
+    - %gitignore%
+
+branch: gh-pages
+
+title: CakeAdmin
+subTitle: Manage your CakePHP Application with ease.
+
+baseUrl: http://bakkerij.github.io/cakeadmin
+
+menu:
+  items:
+    introduction:
+      text: Introduction
+      relativeUrl: index.html
+    installation:
+      text: Installation
+      relativeUrl: installation.html
+    quik-start:
+      text: Quick Start
+      relativeUrl: quick-start.html
+    cakeadmin-class:
+      text: CakeAdmin Class
+      relativeUrl: cakeadmin-class.html
+    configuration:
+      text: Configuration
+      relativeUrl: configuration.html
+    posttypes:
+      text: PostTypes
+      relativeUrl: posttypes.html
+    commands:
+      text: Commands
+      relativeUrl: commands.html
+    custom-controllers:
+      text: Custom Controllers
+      relativeUrl: custom-controllers.html
+    events:
+      text: Events
+      relativeUrl: events.html

@@ -1,0 +1,25 @@
+{
+  "name": "Bakkerij/CakeAdmin",
+  "description": "Bakkerij/CakeAdmin plugin for CakePHP",
+  "type": "cakephp-plugin",
+  "require": {
+    "php": ">=5.4.16",
+    "cakephp/cakephp": "~3.0",
+    "friendsofcake/crud": "^4.3",
+    "gourmet/knp-menu": "~0.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bakkerij\\CakeAdmin\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Bakkerij\\CakeAdmin\\Test\\": "tests",
+      "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+    }
+  }
+}
