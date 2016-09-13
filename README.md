@@ -18,6 +18,12 @@ The recommended way to install composer packages is:
 $ composer require bakkerij/cakeadmin:dev-rewrite
 ```
 
+## Load Plugin
+
+```
+$ bin/cake plugin load -b -r CakeManager
+```
+
 ## Update Database Info
 
 Navigate to the new project's config/app.php and update your Datasources username, password, and database.
