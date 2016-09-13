@@ -21,7 +21,7 @@ $ composer require bakkerij/cakeadmin:dev-rewrite
 ## Load Plugin
 
 ```
-$ bin/cake plugin load -b -r CakeManager
+$ bin/cake plugin load -b -r Bakkerij/CakeAdmin
 ```
 
 ## Update Database Info
