@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>CakeAdmin</title>
+
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/highlight.dark.css">
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="https://bakkerij.github.io/cakeadmin/">
+                CakeAdmin
+                <small class="hidden-xs hidden-sm">
+                    Manage your CakePHP Application with ease.
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/index.html">
+                                        Introduction
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/installation.html">
+                                        Installation
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/quick-start.html">
+                                        Quick Start
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/cakeadmin-class.html">
+                                        CakeAdmin Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/configuration.html">
+                                        Configuration
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/posttypes.html">
+                                        PostTypes
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/commands.html">
+                                        Commands
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/custom-controllers.html">
+                                        Custom Controllers
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/events.html">
+                                        Events
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h1 id="cakeadmin-class">CakeAdmin Class</h1>
+<p>The CakeAdmin class is a class located in <code>/src/CakeAdmin.php</code> to make hooking into CakeAdmin much easier. This class will only be executed when a page of CakeAdmin is
+requested, so your own controller classes won't be hurt.</p>
+<p>After generating the class with <code>$ bin/cake cakeadmin init</code>, the class will look like:</p>
+<pre><code>&lt;?php
+
+namespace App;
+
+use Bakkerij\CakeAdmin\BaseCakeAdmin;
+
+class CakeAdmin extends BaseCakeAdmin {
+
+    public function initialize()
+    {
+
+    }
+
+}</code></pre>
+<h2 id="methods">Methods</h2>
+<p>In the <code>initialize</code>-method you can use the following methods:</p>
+<h3><code>registerPostType</code></h3>
+<p>Registering PostTypes can be done using:</p>
+<pre><code>// App
+$this-&gt;registerPostType('Bookmarks');
+
+// Plugin
+$this-&gt;registerPostType('MyPlugin.Bookmarks');
+</code></pre>
+<h3><code>addController</code></h3>
+<p>Adding your custom controller to CakeAdmin can be done using the <code>addController</code> method. You can use multiple formats to parse the route:</p>
+<p>Default example</p>
+<pre><code>$this-&gt;addController('Custom Item', 'Admin/Custom::index');</code></pre>
+<p>With plugin</p>
+<pre><code>$this-&gt;addController('Custom Item', 'MyPlugin.Admin/Custom::index');</code></pre>
+<p>Without prefix (Admin)</p>
+<pre><code>$this-&gt;addController('Custom Item', 'Custom::index');</code></pre>
+<p>Without action (default <code>index</code>)</p>
+<pre><code>$this-&gt;addController('Custom Item', 'Admin/Custom');</code></pre>
+<p>As array</p>
+<pre><code>$this-&gt;addController('Custom Item', [
+    'plugin' =&gt; false,
+    'prefix' =&gt; 'admin',
+    'controller' =&gt; 'Custom',
+    'action' =&gt; 'index'
+]);</code></pre>
+<h3><code>addMenuItem</code></h3>
+<p>Adding a custom menu item can be done using:</p>
+<pre><code>$this-&gt;addMenuItem('cakeadmin_main', 'Dashboard', ['uri' =&gt; [
+    'plugin' =&gt; 'Bakkerij/CakeAdmin',
+    'prefix' =&gt; 'admin',
+    'controller' =&gt; 'Dashboard',
+    'action' =&gt; 'index'
+]]);</code></pre>
+<blockquote>
+<p>Note to developers: Not implemented yet ;)</p>
+</blockquote>
+<h2 id="events">Events</h2>
+<p>The following events are listened by the CakeAdmin class. By creating those methods you can hook into the events.</p>
+<h3><code>CakeAdmin.Controller.startup</code></h3>
+<pre><code>public function startup(Event $event)
+{
+
+}</code></pre>
+<h3><code>CakeAdmin.Controller.beforeRedirect</code></h3>
+<pre><code>public function beforeRedirect(Event $event)
+{
+
+}</code></pre>
+<h3><code>CakeAdmin.Controller.beforeFilter</code></h3>
+<pre><code>public function beforeFilter(Event $event)
+{
+
+}</code></pre>
+<h3><code>CakeAdmin.Controller.beforeRender</code></h3>
+<pre><code>public function beforeRender(Event $event)
+{
+
+}</code></pre>
+<h3><code>CakeAdmin.Controller.shutdown</code></h3>
+<pre><code>public function shutdown(Event $event)
+{
+
+}</code></pre>
+<h3 id="add-events">Add events</h3>
+<p>To add your own implemented events use the following code:</p>
+<pre><code>public function implementedEvents()
+    {
+        $events = parent::implementedEvents();
+
+        $events['your.event'] = 'yourEvent';
+
+        return $events;
+    }</code></pre>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

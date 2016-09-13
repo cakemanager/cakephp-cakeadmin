@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>CakeAdmin</title>
+
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/highlight.dark.css">
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="https://bakkerij.github.io/cakeadmin/">
+                CakeAdmin
+                <small class="hidden-xs hidden-sm">
+                    Manage your CakePHP Application with ease.
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/index.html">
+                                        Introduction
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/installation.html">
+                                        Installation
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/quick-start.html">
+                                        Quick Start
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/cakeadmin-class.html">
+                                        CakeAdmin Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/configuration.html">
+                                        Configuration
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/posttypes.html">
+                                        PostTypes
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/commands.html">
+                                        Commands
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/custom-controllers.html">
+                                        Custom Controllers
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/events.html">
+                                        Events
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h1 id="posttypes">PostTypes</h1>
+<p>PostTypes are a great way to manage your table data per model.</p>
+<h2 id="basic-usage">Basic Usage</h2>
+<p>To get started, create a PostType class. These classes live in <code>src/PostType</code>. The most basic PostType class would look like:</p>
+<pre><code>// src/PostType/BookmarksPostType.php
+namespace App\PostType;
+
+use Bakkerij\CakeAdmin\PostType\PostType;
+
+class BookmarksPostType extends PostType
+{
+}</code></pre>
+<p>Note that we did not tell the PostType which model to use for our PostType. By convention PostType objects will use a model that matches the upper cased version of the
+class name. In the above example the <code>Bookmarks</code> model will be used. If our PostType class was named <code>BlogPosts</code> your model should be named <code>BlogPosts</code> as well.
+You can specify the model to using the <code>model()</code> method:</p>
+<pre><code>// src/PostType/BookmarksPostType.php
+namespace App\PostType;
+
+use Bakkerij\CakeAdmin\PostType\PostType;
+
+class BookmarksPostType extends PostType
+{
+
+    public function initialize() {
+
+        $this-&gt;model('Bookmarks');
+
+    }
+
+}</code></pre>
+<p>The same rule is applied to the name of the PostType and its slug (used in routes). You can define them using the <code>name()</code> and <code>slug()</code> method:</p>
+<pre><code>// src/PostType/BookmarksPostType.php
+namespace App\PostType;
+
+use Bakkerij\CakeAdmin\PostType\PostType;
+
+class BookmarksPostType extends PostType
+{
+
+    public function initialize() {
+
+        $this-&gt;name('Bookmarks'); // also `alias()` could be used
+        $this-&gt;slug('bookmarks');
+
+    }
+
+}</code></pre>
+<h2 id="appearance-in-menu">Appearance in Menu</h2>
+<p>By default the PostTypes appears in CakeAdmin's main menu (on the left). To disable this, use the <code>menu()</code> method:</p>
+<pre><code>    public function initialize() {
+
+        $this-&gt;menu(false);
+
+    }</code></pre>
+<h2 id="adding-a-description">Adding a Description</h2>
+<p>To add a description to your PostType, use the <code>description()</code> method:</p>
+<pre><code>    public function initialize() {
+
+        $this-&gt;description('Manages all bookmarks of the application.');
+
+    }</code></pre>
+<h2 id="actions">Actions</h2>
+<p>By default, the following actions are available:</p>
+<ul>
+<li>index</li>
+<li>add</li>
+<li>view</li>
+<li>edit</li>
+<li>delete</li>
+</ul>
+<p>To disable or enable any action, you can use the <code>action()</code> method:</p>
+<pre><code>    public function initialize() {
+
+        // enable
+        $this-&gt;action('index' =&gt; true);
+
+        // disable
+        $this-&gt;action('add' =&gt; false);
+
+    }</code></pre>
+<p>To get the current state of an action, use the same <code>action()</code> method without any argument:</p>
+<pre><code>$state = $this-&gt;action('add');</code></pre>
+<p>To get the state of all actions, use <code>actions()</code>:</p>
+<pre><code>$actions = $this-&gt;actions();</code></pre>
+<blockquote>
+<p>Note; while Crud is used, at this time it isn't possible yet to customize the <code>Action</code> to use.</p>
+</blockquote>
+<h2 id="table-columns">Table Columns</h2>
+<p>By default the table (on the index page of the PostType) contains the following columns:</p>
+<ul>
+<li>primary key (usually <code>id</code>)</li>
+<li>display field (given in the Model)</li>
+<li><code>created</code> and <code>modified</code> when the <code>Timestamp</code> behavior is loaded</li>
+</ul>
+<p>You can choose your own columns using the <code>tableColumns()</code> method:</p>
+<pre><code>    public function initialize() {
+
+        $this-&gt;tableColumns([
+            'id',
+            'title',
+            'url',
+            'created',
+            'modified'
+        ]);
+
+    }</code></pre>
+<p>You can use different getters using the <code>get</code> key as option:</p>
+<pre><code>$this-&gt;tableColumns([
+    'url' =&gt; [
+        'get' =&gt; 'customUrl'
+    ],
+]);</code></pre>
+<p>This can be useful when you are using <a href="http://book.cakephp.org/3.0/en/orm/entities.html#creating-virtual-fields">virtual fields</a>.</p>
+<h2 id="form-fields">Form Fields</h2>
+<p>By default the form (on the add and edit page of the PostType) contains all columns from the table excluding <code>created</code> and <code>modified</code> when the <code>Timestamp</code> behavior
+is loaded. </p>
+<p>You can choose your own fields using the <code>formFields()</code> method:</p>
+<pre><code>    public function initialize() {
+
+        $this-&gt;formFields([
+            'id',
+            'title',
+            'description',
+            'created',
+            'modified'
+        ]);
+
+    }</code></pre>
+<p>By default, all fields are presented in both forms: add and edit. To enable fields only on add, or only on edit, use the <code>on</code> key as option:</p>
+<pre><code>$this-&gt;formFields([
+    'description' =&gt; [
+        'on' =&gt; 'add'
+    ],
+]);</code></pre>
+<p>In this case, the description field will only be displayed on the add page, and not on the edit page.</p>
+<h2 id="filters">Filters</h2>
+<blockquote>
+<p>Note to developers: Not implemented yet.</p>
+</blockquote>
+<h2 id="table-instance">Table Instance</h2>
+<p>By default a Table instance is created from the <code>model()</code> value, but in case you want to modify the table instance you can modify the Table instance using:</p>
+<pre><code>    public function initialize() {
+
+        // get table instance
+        $table = $this-&gt;table();
+
+        // modify $table
+
+        // set table instance
+        $this-&gt;table($table);
+    }</code></pre>
+<p>From now on, the modified table instance will be used.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>CakeAdmin</title>
+
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/highlight.dark.css">
+        <link rel="stylesheet" href="https://bakkerij.github.io/cakeadmin/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="https://bakkerij.github.io/cakeadmin/">
+                CakeAdmin
+                <small class="hidden-xs hidden-sm">
+                    Manage your CakePHP Application with ease.
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/index.html">
+                                        Introduction
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/installation.html">
+                                        Installation
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/quick-start.html">
+                                        Quick Start
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/cakeadmin-class.html">
+                                        CakeAdmin Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/configuration.html">
+                                        Configuration
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/posttypes.html">
+                                        PostTypes
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/commands.html">
+                                        Commands
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/custom-controllers.html">
+                                        Custom Controllers
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://bakkerij.github.io/cakeadmin/events.html">
+                                        Events
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h1 id="configuration">Configuration</h1>
+<p>The following configurations are used in CakeAdmin using the <code>Cake\Core\Configure</code> class:</p>
+<ul>
+<li><code>CA.fields</code> - The login fields to use. Default <code>email</code> and <code>password</code>.</li>
+<li><code>CA.menu</code> - Array for the menu</li>
+</ul>
+<blockquote>
+<p>Note, all CakeAdmin related configurations will contain the prefix <code>CA</code>.</p>
+</blockquote>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>
