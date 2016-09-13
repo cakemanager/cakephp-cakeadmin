@@ -16,7 +16,7 @@ branch: gh-pages
 title: CakeAdmin
 subTitle: Manage your CakePHP Application with ease.
 
-baseUrl: https://bakkerij.github.io/cakeadmin
+baseUrl: http://bakkerij.github.io/cakeadmin
 
 menu:
   items:
