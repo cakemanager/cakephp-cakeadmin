@@ -1,6 +1,6 @@
 {
-  "name": "bakkerij/cakeadmin",
-  "description": "Administrator plugin for CakePHP",
+  "name": "Bakkerij/CakeAdmin",
+  "description": "Bakkerij/CakeAdmin plugin for CakePHP",
   "type": "cakephp-plugin",
   "require": {
     "php": ">=5.4.16",
