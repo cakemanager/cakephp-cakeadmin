@@ -1,29 +1,25 @@
 {
-  "name": "cakemanager/cakephp-cakeadmin",
-  "description": "CakeAdmin plugin for CakePHP",
+  "name": "bakkerij/cakeadmin",
+  "description": "Admin plugin for CakePHP",
   "type": "cakephp-plugin",
   "require": {
     "php": ">=5.4.16",
-    "cakephp/cakephp": "~3.1",
-    "cakemanager/cakephp-utils": "dev-master",
-    "cakemanager/cakephp-notifier": "dev-master",
-    "cakemanager/cakephp-settings": "dev-master",
-    "cakemanager/cakeadmin-lightstrap": "dev-master"
+    "cakephp/cakephp": "~3.0",
+    "friendsofcake/crud": "^4.3",
+    "gourmet/knp-menu": "~0.4"
   },
   "require-dev": {
-    "phpunit/phpunit": " 4.1.*@dev",
-    "cakephp/cakephp-codesniffer": "2.*"
+    "phpunit/phpunit": "*"
   },
   "autoload": {
     "psr-4": {
-      "CakeAdmin\\": "src"
+      "Bakkerij\\CakeAdmin\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "CakeAdmin\\Test\\": "tests",
+      "Bakkerij\\CakeAdmin\\Test\\": "tests",
       "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
     }
-  },
-  "minimum-stability": "dev"
+  }
 }

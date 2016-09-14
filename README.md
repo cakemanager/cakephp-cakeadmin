@@ -1,18 +1,36 @@
-# CakeAdmin plugin for CakePHP
+# Bakkerij/CakeAdmin plugin for CakePHP
 
-> Note: This is a non-stable plugin for CakePHP 3.x at this time. It is currently under development and should be considered experimental.
+## Install CakePHP
+
+Note: This is only required if you do not already have a project started.
+
+```
+$ composer self-update && composer create-project --prefer-dist cakephp/app {your new project name}
+```
 
 ## Installation
 
-You can find the installation-guide here: http://cakemanager.org/docs/cakeadmin/1.0/installation/.
+You can install this plugin into your CakePHP application using [composer](http://getcomposer.org).
 
-## Documentation
+The recommended way to install composer packages is:
 
-Documentation is available at http://cakemanager.org/docs/cakeadmin/1.0/.
+```
+$ composer require bakkerij/cakeadmin:dev-rewrite
+```
 
-## Strategy
+## Load Plugin
 
-We are working on this version. Wanna read more about our strategy? Read the following post: http://cakemanager.org/new-cakeadmin-plugin-announced/
+```
+$ bin/cake plugin load -b -r Bakkerij/CakeAdmin
+```
 
+## Update Database Info
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cakemanager/cakephp-cakeadmin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Navigate to the new project's config/app.php and update your Datasources username, password, and database.
+
+## Load CakeAdmin Tables
+
+```
+$ bin/cake migrations migrate -p Bakkerij/CakeAdmin
+```
+

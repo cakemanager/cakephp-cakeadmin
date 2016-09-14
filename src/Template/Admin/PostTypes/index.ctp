@@ -1,42 +1,49 @@
-<?php
-/**
- * CakeManager (http://cakemanager.org)
- * Copyright (c) http://cakemanager.org
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) http://cakemanager.org
- * @link          http://cakemanager.org CakeManager Project
- * @since         1.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Menu') ?></li>
 
-$this->PostTypes->type($type);
-$this->PostTypes->data($data);
-?>
-
-<?= $this->PostTypes->header() ?>
-
-<?= $this->PostTypes->addButton() ?>
-
-<hr>
-<?= $this->PostTypes->searchFilter($searchFilters) ?>
-
-<table cellpadding="0" cellspacing="0">
-    <thead>
-    <?= $this->PostTypes->tableHead() ?>
-    </thead>
-    <tbody>
-    <?= $this->PostTypes->tableBody() ?>
-    </tbody>
-</table>
-<div class="paginator">
-    <ul class="pagination">
-        <?= $this->Paginator->prev('< ' . __d('CakeAdmin', 'previous')); ?>
-        <?= $this->Paginator->numbers(); ?>
-        <?= $this->Paginator->next(__d('CakeAdmin', 'next') . ' >'); ?>
+        <?= $this->Menu->render('cakeadmin_main'); ?>
     </ul>
-    <p><?= $this->Paginator->counter(); ?></p>
+</nav>
+<div class="index large-9 medium-8 columns content">
+    <h3><?= __('View all {0}', [$this->PostType->name('plural')]) ?></h3>
+
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <?php foreach ($this->PostType->tableColumns() as $column => $options): ?>
+                <th><?= $this->Paginator->sort($column) ?></th>
+            <?php endforeach; ?>
+            <th class="actions"><?= __('Actions') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($items as $item): ?>
+            <tr>
+                <?php foreach ($this->PostType->tableColumns() as $column => $options): ?>
+                    <td><?= h($item->get($options['get'])) ?></td>
+                <?php endforeach; ?>
+                <td class="actions">
+                    <?= $this->PostType->viewLink($item) ?>
+                    <?= $this->PostType->editLink($item) ?>
+                    <?= $this->PostType->deleteLink($item) ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+        </ul>
+        <p><?= $this->Paginator->counter() ?></p>
+    </div>
+
+    <!--    --><?php //foreach($items as $item): ?>
+    <!---->
+    <!--        --><?php //debug($item) ?>
+    <!---->
+    <!--    --><?php //endforeach; ?>
 </div>

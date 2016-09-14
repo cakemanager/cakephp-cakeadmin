@@ -1,69 +1,78 @@
 <?php
-/**
- * CakeManager (http://cakemanager.org)
- * Copyright (c) http://cakemanager.org
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) http://cakemanager.org
- * @link          http://cakemanager.org CakeManager Project
- * @since         1.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
+use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 
 Router::prefix('admin', function ($routes) {
 
-    $routes->connect(
-        '/', [
-            'plugin' => 'CakeAdmin',
-            'controller' => 'Users',
-            'action' => 'login'
-        ]
-    );
-
     $routes->fallbacks('InflectedRoute');
+
 });
 
-Router::plugin('CakeAdmin', ['path' => '/'], function ($routes) {
+Router::plugin('Bakkerij/CakeAdmin', ['path' => '/', '_namePrefix' => 'cakeadmin:'], function (RouteBuilder $routes) {
 
     $routes->prefix('admin', function ($routes) {
 
+        // User routes
         $routes->connect(
-            '/login', ['controller' => 'Users', 'action' => 'login']
+            '/login',
+            [
+                'controller' => 'Users',
+                'action' => 'login',
+            ],
+            [
+                '_name' => 'login'
+            ]
+        );
+        $routes->connect(
+            '/logout',
+            [
+                'controller' => 'Users',
+                'action' => 'logout',
+            ],
+            [
+                '_name' => 'logout'
+            ]
         );
 
+        // Default admin route
         $routes->connect(
-            '/logout', ['controller' => 'Users', 'action' => 'logout']
+            '/',
+            ['controller' => 'Dashboard']
         );
 
+        // PostType routes
         $routes->connect(
-            '/posttypes/:type/:action/*', ['controller' => 'PostTypes'], ['pass' => ['type']]
+            '/posttype/:type/',
+            ['controller' => 'PostTypes', 'action' => 'index'],
+            ['_name' => 'posttype:index', 'pass' => ['type']]
+        );
+        $routes->connect(
+            '/posttype/:type/index',
+            ['controller' => 'PostTypes', 'action' => 'index'],
+            ['pass' => ['type']]
+        );
+        $routes->connect(
+            '/posttype/:type/add',
+            ['controller' => 'PostTypes', 'action' => 'add'],
+            ['_name' => 'posttype:add', 'pass' => ['type']]
+        );
+        $routes->connect(
+            '/posttype/:type/edit/:id',
+            ['controller' => 'PostTypes', 'action' => 'edit'],
+            ['_name' => 'posttype:edit', 'pass' => ['id', 'type']]
+        );
+        $routes->connect(
+            '/posttype/:type/view/:id',
+            ['controller' => 'PostTypes', 'action' => 'view'],
+            ['_name' => 'posttype:view', 'pass' => ['id', 'type']]
+        );
+        $routes->connect(
+            '/posttype/:type/delete/:id',
+            ['controller' => 'PostTypes', 'action' => 'delete'],
+            ['_name' => 'posttype:delete', 'pass' => ['id', 'type']]
         );
 
-        $routes->connect(
-            '/', ['controller' => 'Users', 'action' => 'login']
-        );
-
-        $routes->connect(
-            '/users/:action/*', ['controller' => 'Users']
-        );
-
-        $routes->connect(
-            '/dashboard', ['controller' => 'Dashboard']
-        );
-
-        $routes->connect(
-            '/notifications/**', ['controller' => 'Notifications']
-        );
-
-        $routes->connect(
-            '/settings/**', ['controller' => 'Settings']
-        );
-
-        $routes->fallbacks('InflectedRoute');
+        $routes->fallbacks('DashedRoute');
 
     });
 

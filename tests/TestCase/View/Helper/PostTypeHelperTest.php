@@ -1,22 +1,22 @@
 <?php
-namespace Bakkerij\CakeAdmin\Test\TestCase\Controller\Component;
+namespace Bakkerij\CakeAdmin\Test\TestCase\View\Helper;
 
-use Bakkerij\CakeAdmin\Controller\Component\CakeAdminComponent;
-use Cake\Controller\ComponentRegistry;
+use Bakkerij\CakeAdmin\View\Helper\PostTypeHelper;
 use Cake\TestSuite\TestCase;
+use Cake\View\View;
 
 /**
- * Bakkerij\CakeAdmin\Controller\Component\CakeAdminComponent Test Case
+ * Bakkerij\CakeAdmin\View\Helper\PostTypeHelper Test Case
  */
-class CakeAdminComponentTest extends TestCase
+class PostTypeHelperTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \Bakkerij\CakeAdmin\Controller\Component\CakeAdminComponent
+     * @var \Bakkerij\CakeAdmin\View\Helper\PostTypeHelper
      */
-    public $CakeAdmin;
+    public $PostType;
 
     /**
      * setUp method
@@ -26,8 +26,8 @@ class CakeAdminComponentTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $registry = new ComponentRegistry();
-        $this->CakeAdmin = new CakeAdminComponent($registry);
+        $view = new View();
+        $this->PostType = new PostTypeHelper($view);
     }
 
     /**
@@ -37,7 +37,7 @@ class CakeAdminComponentTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->CakeAdmin);
+        unset($this->PostType);
 
         parent::tearDown();
     }

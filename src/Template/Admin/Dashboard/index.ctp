@@ -1,28 +1,10 @@
-<?php
-$this->set('title', 'Dashboard');
-?>
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Menu') ?></li>
 
-<h3>Dashboard</h3>
-
-<div class="row">
-    <div class="columns large-12 top">
-        <?= $this->cell('CakeAdmin.Dashboard::welcome') ?>
-    </div>
-</div>
-
-<div class="row">
-    <div class="columns large-6 left">
-        <?= $this->cell('CakeAdmin.Dashboard::gettingStarted') ?>
-        <?= $this->cell('CakeAdmin.Dashboard::plugins'); ?>
-        <?= $this->cell('CakeAdmin.Dashboard::gettingHelp'); ?>
-    </div>
-    <div class="columns large-6 right">
-        <?= $this->cell('CakeAdmin.Dashboard::latestPosts'); ?>
-    </div>
-</div>
-
-<div class="row">
-    <div class="columns large-12 bottom">
-        <?= $this->cell('CakeAdmin.Dashboard::aboutUs') ?>
-    </div>
+        <?= $this->Menu->render('cakeadmin_main'); ?>
+    </ul>
+</nav>
+<div class="index large-9 medium-8 columns content">
+    <h3><?= __('Dashboard') ?></h3>
 </div>

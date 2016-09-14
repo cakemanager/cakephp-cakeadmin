@@ -13,7 +13,7 @@
 
     <!-- Add any additional test suites you want to run here -->
     <testsuites>
-        <testsuite name="CakeAdmin Test Suite">
+        <testsuite name="Bakkerij/CakeAdmin Test Suite">
             <directory>./tests/TestCase</directory>
         </testsuite>
     </testsuites>

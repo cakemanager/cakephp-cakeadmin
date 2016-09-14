@@ -1,23 +1,20 @@
 <?php
-/**
- * CakeManager (http://cakemanager.org)
- * Copyright (c) http://cakemanager.org
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) http://cakemanager.org
- * @link          http://cakemanager.org CakeManager Project
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-namespace CakeAdmin\Model\Entity;
+namespace Bakkerij\CakeAdmin\Model\Entity;
 
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 
 /**
- * Administrator Entity.
+ * Administrator Entity
+ *
+ * @property string $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property int $active
+ * @property string $request_key
+ * @property \Cake\I18n\Time $created
+ * @property \Cake\I18n\Time $modified
  */
 class Administrator extends Entity
 {
@@ -25,14 +22,15 @@ class Administrator extends Entity
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
+     * Note that when '*' is set to true, this allows all unspecified fields to
+     * be mass assigned. For security purposes, it is advised to set '*' to false
+     * (or remove it), and explicitly make individual fields accessible as needed.
+     *
      * @var array
      */
     protected $_accessible = [
-        'email' => true,
-        'password' => true,
-        'new_password' => true,
-        'confirm_password' => true,
-        'activation_key' => true,
+        '*' => true,
+        'id' => false
     ];
 
     /**
@@ -52,7 +50,7 @@ class Administrator extends Entity
     }
 
     /**
-     * Fields that should be hidden.
+     * Fields that are excluded from JSON versions of the entity.
      *
      * @var array
      */
