@@ -1,5 +1,5 @@
 {
-  "name": "cakemanager/cakephp-cakeadmin",
+  "name": "vlinhd11/cakephp-cakeadmin",
   "description": "CakeAdmin plugin for CakePHP",
   "type": "cakephp-plugin",
   "require": {
